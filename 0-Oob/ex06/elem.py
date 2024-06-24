@@ -57,7 +57,6 @@ class Elem:
 			
 			Returns: None
 			"""
-			
 			Exception.__init__(self, msg)
 
 	def __init__(self, tag='div', attr=dict(), content=None, tag_type='double') -> None:
