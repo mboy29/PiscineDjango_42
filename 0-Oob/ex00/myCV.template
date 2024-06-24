@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} {{ surname }}'s resume in HTML</title>
+    <style>
+
+        body {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #424242;
+            font-family: 'Arial', sans-serif;
+            font-size: 21pt;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        h2 {
+            color: black;
+            font-family: 'Arial', sans-serif;
+            font-size: 14pt;
+            text-transform: uppercase;
+            font-weight: lighter;
+            margin: 5px 0;
+        }
+
+        h3 {
+            color: black;
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            text-transform: uppercase;
+            clear: both;
+            margin: 0 0
+        }
+
+        hr {
+            color:black;
+            width: 40%;
+            margin: 10px 0;
+        }
+
+        .header {
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            width: 40%;
+        }       
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ name }} {{ surname }}</h1>
+        <h2>{{ profession }}</h2>
+    </div>
+    <hr>
+    <div class="info">
+        <h3>Age: {{ age }}</h3>
+        <h3>Address: {{ address }}</h3>
+        <h3>Phone: {{ phone }}</h3>
+    </div>
+
+</body>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Resume in HTML</title>
+    <style>
+
+        body {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #424242;
+            font-family: 'Arial', sans-serif;
+            font-size: 21pt;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        h2 {
+            color: black;
+            font-family: 'Arial', sans-serif;
+            font-size: 14pt;
+            text-transform: uppercase;
+            font-weight: lighter;
+            margin: 5px 0;
+        }
+
+        h3 {
+            color: black;
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            text-transform: uppercase;
+            clear: both;
+            margin: 0 0
+        }
+
+        strong {
+            color: #424242;
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        ul {
+            padding: 0;
+            margin: 0;
+            column-count: 2;
+            width: 40%;
+        }
+
+        ul li {
+            display: inline-block;
+        }
+
+        ol {
+            column-count: 2;
+            width: 40%;
+        }
+
+        ol li {
+            display: list-item;
+        }
+        
+        li {
+            color: black;
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table {
+            margin: 10px 0;
+            width: 40%;
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+        td {
+            color: black;
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+
+        }
+
+        th {
+            color: black;
+            font-family: 'Arial', sans-serif;
+            font-size: 10pt;
+            text-transform: uppercase;
+            clear: both;
+            margin: 5px 0
+        }
+
+        hr {
+            color:black;
+            width: 40%;
+            margin: 10px 0;
+        }
+
+        .header {
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .info_pro, .info_skills, .info_lang {
+            width: 100%;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+       
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Melody Boy</h1>
+        <h2>Fullstack Web Developer</h2>
+    </div>
+
+    <div class="info">
+
+        <div class="info_pro">
+            <h3>Professional Experiences</h3>
+            <hr>
+            <table>
+                <tr>
+                    <th>Periode</th>
+                    <th>Position</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                </tr>
+                <tr>
+                    <tr>
+                        <td>December 2022 - January 2025</td>
+                        <td>Technical and Pedagogical Manager <i>Apprenticeship</i></td>
+                        <td>42 Nice</td>
+                        <td>Nice, France</td>
+                    </tr>
+                </tr>
+                <tr>
+                    <td>Juin 2022 - December 2022</td>
+                    <td>Technical and Pedagogical Assistant <i>Internship</i></td>
+                    <td>42 Nice</td>
+                    <td style="background-color: #424242; color: white;">Nice, France</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="info_skills">
+            <h3>Skills</h3>
+            <hr>
+            <ul>
+                <li><strong>Frontend</strong> HTML, CSS, Sass, ReactJS & AngularJS</li>
+                <li><strong>Backend</strong> NodeJS, ExpressJS & PHP</li>
+                <li><strong>Database</strong> MySQL, PostgreSQL & MariaDB</li>
+                <li><strong>Tools</strong> Docker & Git</li>
+                <li><strong>Design</strong> Adobe (Illustrator, Photoshop, Indesign), Figma</li>
+                <li><strong>Working environment</strong> MacOS, Linux & Windows</li>
+            </ul>
+        </div>
+
+        <div class="info_lang">
+            <h3>Languages</h3>
+            <hr>
+            <ol>
+                <li>French <i>Native</i></li>
+                <li>English: <i>Native</i></li>
+            </ol>
+        </div>
+
+    </div>
+
+</body>

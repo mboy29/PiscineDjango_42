@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Email Sending Form</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center; 
+                align-items: center; 
+                height: 100vh;
+                margin: 0;
+            }
+            
+            h1 {
+                color: #424242;
+                font-family: 'Arial', sans-serif;
+                font-size: 21pt;
+                text-transform: uppercase;
+                text-align: center;
+                margin: 5px 0;
+            }
+
+            h2 {
+                color: black;
+                font-family: 'Arial', sans-serif;
+                font-size: 14pt;
+                text-transform: uppercase;
+                font-weight: lighter;
+                margin: 5px 0;
+            }
+
+
+            hr {
+                color:black;
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            form {
+                max-width: 500px;
+                margin: 0 auto;
+                padding: 20px;
+                opacity: 0.8;
+                border-radius: 5px;
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            label {
+                color: black;
+                font-family: 'Arial', sans-serif;
+                font-size: 10pt;
+                clear: both;
+                margin: 0 0
+            }
+
+            input {
+                border: none;             
+                border-bottom: 1px solid #000;  
+                padding: 5px;  
+                color: black;
+                font-family: 'Arial', sans-serif;
+                font-weight: lighter;
+                font-size: 10pt;   
+            }
+
+        
+            input:focus {
+                outline: none;
+                border-bottom: 1px solid navy;
+                color: black;
+                font-family: 'Arial', sans-serif;
+                font-weight: lighter;
+                font-size: 10pt;
+            }
+
+            button {
+                background-color: #424242;
+                color: white;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+            }
+
+            button:hover {
+                background-color: black;
+
+            }
+
+            .header {
+                flex-direction: column;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .fields {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin: 10px 0;
+                width: 100%;
+            }
+
+            .field {
+                display: flex;
+                flex-direction: column;
+                width: 45%;
+            }
+
+            .field_age, .field_gender {
+                display: flex;
+                flex-direction: column;
+                align-items: right;
+                width: 45%;
+            }
+
+            .field_gender label {
+                margin-bottom: 10px;
+            }
+
+            .field_student {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                margin: 10px 0;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="header">
+            <h1>Contact Form</h1>
+            <h2>Fill in the form below to contact us</h2>
+        </div>
+
+        
+    
+        <form id="contactForm">  
+            <hr>
+
+            <div class="fields">
+                <div class="field">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" id="firstname" name="firstname" required>
+                </div>
+                
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+            </div>
+    
+            <div class="fields">
+                <div class="field">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+         
+    
+            <div class="fields">
+                <div class="field_age">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" required>
+                </div>
+
+                <div class="field_gender">
+                    <label>Gender</label>
+                    <div>
+                        <input type="radio" id="gender_male" name="gender" value="Male" required>
+                        <label for="gender_male">Male</label>
+                        <input type="radio" id="gender_female" name="gender" value="Female" required>
+                        <label for="gender_female">Female</label>
+                        <input type="radio" id="gender_other" name="gender" value="Other" required>
+                        <label for="gender_other">Other</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="field_student">
+                <label for="student">Student at 42 ?</label>
+                <input type="checkbox" id="student" name="student">
+            </div>
+
+            <hr>
+    
+            <button type="button" onclick="displayFormContents()">Submit</button>
+        
+            
+        </form>
+        
+    
+        <script src="popup.js"></script>
+    </body>
+
+</html>
