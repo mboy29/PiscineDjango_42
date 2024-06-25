@@ -1,8 +1,3 @@
-# Imports
-# -------
-import sys
-
-
 # Tools
 # -----
 
@@ -52,13 +47,13 @@ def my_sort(data: dict) -> dict:
 # Main Function
 # -------------
 
-def main(arg: list) -> None:
+def main() -> None:
     
     """
-    Prints the state of a given capital city.
+    Prints the sorted list of guitarists by their birth years 
+    and alphabetically by their names for the same birth years.
 
-    Parameters:
-        arg (list) - The list of arguments.
+    Parameters: None
     
     Returns: None
     """
@@ -87,12 +82,9 @@ def main(arg: list) -> None:
         'Burton' : '1939',
     }
 
-    # Check arguments and print capital city 
-    if len(arg) != 0:
-        t_err("Invalid number of arguments", True)
     sorted_data = my_sort(d)
     for item in sorted_data:
-        print(f"{item[0]}: {item[1]}")
+        print(f"{item[0]}")
     return
     
     
@@ -101,6 +93,6 @@ def main(arg: list) -> None:
 
 if __name__ == "__main__":
     try:
-        main(sys.argv[1:])
+        main()
     except Exception as exc:
         t_err(exc)

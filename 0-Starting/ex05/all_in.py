@@ -162,7 +162,8 @@ def all_in(keys_values: list) -> None:
 def main(arg: list) -> None:
     
     """
-    Prints the state of a given capital city.
+    Prints the capital city of a state, the state of a capital city
+    or if the argument is neither a capital city nor a state.
 
     Parameters:
         arg (list) - The list of arguments.

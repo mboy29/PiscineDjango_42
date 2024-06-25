@@ -1,8 +1,3 @@
-# Imports
-# -------
-import sys
-
-
 # Tools
 # -----
 
@@ -24,7 +19,7 @@ def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
 
     print(f"\033[0;31m[ERROR] {msg}\033[0m")
     if usage == True:
-        print("\033[0;33m[USAGE] python3 numbers.py <path to file>\033[0m")
+        print("\033[0;33m[USAGE] python3 numbers.py\033[0m")
     exit(code)
 
 def t_open(path: str) -> str:
@@ -55,24 +50,19 @@ def t_open(path: str) -> str:
 # Main Function
 # -------------
 
-def main(arg: list) -> None:
+def main() -> None:
 
     """
     Main function of the program : opens a file and prints
     the numbers it contains excluding the commas in between.
 
-    Parameters:
-        arg (list) - List of arguments given to the program.
+    Parameters: None
 
     Returns: None
     """
-
-    # Check number of arguments
-    if len(arg) != 1:
-        t_err("Invalid number of arguments", True)
     
     # Open file and print numbers
-    file_content = t_open(arg[0])
+    file_content = t_open("numbers.txt")
     numbers = file_content.split(",")
     for number in numbers:
         print(number.strip())
@@ -83,6 +73,6 @@ def main(arg: list) -> None:
 
 if __name__ == "__main__":
     try:
-        main(sys.argv[1:])
+        main()
     except Exception as exc:
         t_err(exc)
