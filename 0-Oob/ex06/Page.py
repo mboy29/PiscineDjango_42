@@ -115,7 +115,7 @@ class Page:
                         return False
             return True
 
-        def is_valid_text_content(self) -> bool:
+        def is_valid_text(self) -> bool:
 
             """
             Check if text content elements such as Title, H1, H2, Li, Th, Td
@@ -134,7 +134,7 @@ class Page:
                     return False
             return True
         
-        def is_valid_p(self) -> bool:
+        def is_valid_paragraph(self) -> bool:
 
             """
             Check if the P Elem is valid : must strictly contain Text elements.
@@ -189,54 +189,75 @@ class Page:
                         return False
             return True
 
-        def is_vaid_table_items(self) -> bool:
+        def is_valid_table_row(self) -> bool:
 
             """
-            Checks if the Tr, Th, or Td elements are valid : 
-            - Tr must contain at least one Th or Td and only some Th or Td ;
-            - Th and the Td must be mutually exclusive.
+            Checks if the Tr, Th, or Td elements are valid: 
+            - Tr must contain at least one Th or Td and only some Th or Td;
+            - Th and Td must be mutually exclusive.
 
             Parameters: None
 
             Returns:
                 - bool: True if the Tr, Th, or Td are valid, False otherwise.
             """
-
-            # print(self.element)
+            
             if isinstance(self.element, Tr):
-                if len(self.element.content) == 0:
+                if not self.element.content:
                     return False
-                first_elem_type = type(self.element.content[0])
-                if first_elem_type not in (Th, Td):
+                
+                contains_th = any(isinstance(item, Th) for item in self.element.content)
+                contains_td = any(isinstance(item, Td) for item in self.element.content)
+                
+                # Check if Th and Td are mutually exclusive
+                if contains_th and contains_td:
+                    return False
+                
+                # Ensure all elements are either Th or Td
+                if not all(isinstance(item, (Th, Td)) for item in self.element.content):
+                    return False
+            
+            return True
+
+        def is_valid_table(self) -> bool:
+                
+            """
+            Check if the Table Elem is valid : must strictly contain Tr elements.
+
+            Parameters: None
+
+            Returns:
+                - bool: True if the Table is valid, False otherwise.
+            """
+
+            if isinstance(self.element, Table):
                 for item in self.element.content:
-                    if not isinstance(item, (Th, Td)):
-                        return False
-                    if type(item) != first_elem_type:
+                    if not isinstance(item, Tr):
                         return False
             return True
-                
-
-
         
-        if (not is_valid_node(self)
-            # or not is_valid_html(self)
-            # or not is_valid_head(self)
-            # or not is_valid_body_div(self)
-            # or not is_valid_text_content(self)
-            # or not is_valid_p(self)
-            # or not is_valid_span(self)
-            # or not is_valid_list(self)
-            or not is_vaid_table_items(self)):
-            return False
-        return True
+        validation_methods = [
+            self.is_valid_node,
+            self.is_valid_html,
+            self.is_valid_head,
+            self.is_valid_body_div,
+            self.is_valid_text,
+            self.is_valid_paragraph,
+            self.is_valid_span,
+            self.is_valid_list,
+            self.is_valid_table_row
+        ]
+        
+        return all(method() for method in validation_methods)
+
 
 # Example usage and testing
 if __name__ == '__main__':
     try:
         # Creating a valid HTML document
         html = Tr([
-            Th(Text("Header 1")),
-            Th(Text("Header 2"))
+            Td(Text("Header 1")),
+            Td(Text("Header 2"))
         ])
         page = Page(html)
 

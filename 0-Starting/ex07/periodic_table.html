@@ -1,0 +1,1044 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title>Periodic Table</title>
+            <meta charset="utf-8">
+            <style>
+                
+            body {
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: center; 
+                align-items: center; 
+                height: 100vh;
+                margin: 0;
+                padding: 40px;
+                box-sizing: border-box;
+            }
+
+            h1 {
+                color: #424242;
+                font-family: 'Arial', sans-serif;
+                font-size: 21pt;
+                text-transform: uppercase;
+                text-align: center;
+                margin: 5px 0;
+            }
+
+            h2 {
+                color: black;
+                font-family: 'Arial', sans-serif;
+                font-size: 14pt;
+                text-transform: uppercase;
+                font-weight: lighter;
+                margin: 5px 0;
+            }
+
+            h3 {
+                color: black;
+                font-family: 'Arial', sans-serif;
+                font-size: 10pt;
+                text-transform: uppercase;
+                clear: both;
+                margin: 0 0;
+            }
+
+            h4 {
+                font-family: 'Arial', sans-serif;
+                font-weight: lighter;
+                font-size: 10px;
+                margin: 0px;
+            }
+
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+
+            li {
+                list-style: none;
+            }
+
+            strong {
+                color: #424242;
+                font-family: 'Arial', sans-serif;
+                font-size: 10pt;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            table {
+                background-color: #f1f1f1;
+                padding: 10px;
+                box-sizing: border-box;
+                max-width: 100%;
+                overflow: auto;
+            }
+
+            .element {
+                background-color: #e2e2e2;
+                border: 1px solid #cccccc;
+                text-align: center;
+                padding: 10px;
+                position: relative;
+                box-sizing: border-box;
+            }
+            .element-number {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                font-family: 'Arial', sans-serif;
+                font-size: 12px;
+            }
+            .element-symbol {
+                font-family: 'Arial', sans-serif;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .element-name {
+                font-family: 'Arial', sans-serif;
+                font-size: 12px;
+                margin-top: 5px;
+            }
+            .element-molar {
+                font-family: 'Arial', sans-serif;
+                font-size: 10px;
+                margin-top: 5px;
+            }
+            .element-electron {
+                font-family: 'Arial', sans-serif;
+                font-size: 8px;
+                margin-top: 5px;
+            }
+
+            .legend {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px;
+            }
+
+            .legend-item {
+                font-family: 'Arial', sans-serif;
+                font-size: 12px;
+                text-transform: uppercase;
+                padding: 5px 15px;
+                margin: 0 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            </style>
+        </head>
+        <body>
+            <h1>Periodic Table</h1>
+    
+            <div class="legend">
+    
+                <div style="background-color: #567662;" class="legend-item">Alkali Metals</div>
+        
+                <div style="background-color: #719880;" class="legend-item">Alkaline Earth Metals</div>
+        
+                <div style="background-color: #89A995;" class="legend-item">Transition Metals</div>
+        
+                <div style="background-color: #A0BAAA;" class="legend-item">Post-Transition Metals</div>
+        
+                <div style="background-color: #B8CCC0;" class="legend-item">Metalloids</div>
+        
+                <div style="background-color: #D0DDD4;" class="legend-item">Reactive Non-Metals</div>
+        
+                <div style="background-color: #E8EEEA;" class="legend-item">Noble Gases</div>
+        
+            </div>
+    
+            <table class="table">
+                <tbody>
+    <tr>
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">1</li>
+                                <li class="element-symbol"> H</li>
+                                <li class="element-name"><h4>Hydrogen</h4></li>
+                                <li class="element-molar">1.00794</li>
+                                <li class="element-electron">1</li>
+                            </ul>
+                        </td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td class="element" style="background-color: #E8EEEA;">
+                            <ul>
+                                <li class="element-number">2</li>
+                                <li class="element-symbol"> He</li>
+                                <li class="element-name"><h4>Helium</h4></li>
+                                <li class="element-molar">4.002602</li>
+                                <li class="element-electron">2</li>
+                            </ul>
+                        </td>
+                    </tr><tr>
+                        <td class="element" style="background-color: #567662;">
+                            <ul>
+                                <li class="element-number">3</li>
+                                <li class="element-symbol"> Li</li>
+                                <li class="element-name"><h4>Lithium</h4></li>
+                                <li class="element-molar">6.941</li>
+                                <li class="element-electron">2 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #719880;">
+                            <ul>
+                                <li class="element-number">4</li>
+                                <li class="element-symbol"> Be</li>
+                                <li class="element-name"><h4>Beryllium</h4></li>
+                                <li class="element-molar">9.012182</li>
+                                <li class="element-electron">2 2</li>
+                            </ul>
+                        </td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td class="element" style="background-color: #B8CCC0;">
+                            <ul>
+                                <li class="element-number">5</li>
+                                <li class="element-symbol"> B</li>
+                                <li class="element-name"><h4>Boron</h4></li>
+                                <li class="element-molar">10.811</li>
+                                <li class="element-electron">2 3</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">6</li>
+                                <li class="element-symbol"> C</li>
+                                <li class="element-name"><h4>Carbon</h4></li>
+                                <li class="element-molar">12.0107</li>
+                                <li class="element-electron">2 4</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">7</li>
+                                <li class="element-symbol"> N</li>
+                                <li class="element-name"><h4>Nitrogen</h4></li>
+                                <li class="element-molar">14.0067</li>
+                                <li class="element-electron">2 5</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">8</li>
+                                <li class="element-symbol"> O</li>
+                                <li class="element-name"><h4>Oxygen</h4></li>
+                                <li class="element-molar">15.9994</li>
+                                <li class="element-electron">2 6</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">9</li>
+                                <li class="element-symbol"> F</li>
+                                <li class="element-name"><h4>Fluorine</h4></li>
+                                <li class="element-molar">18.998404</li>
+                                <li class="element-electron">2 7</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">10</li>
+                                <li class="element-symbol"> Ne</li>
+                                <li class="element-name"><h4>Neon</h4></li>
+                                <li class="element-molar">20.1797</li>
+                                <li class="element-electron">2 8</li>
+                            </ul>
+                        </td>
+                    </tr><tr>
+                        <td class="element" style="background-color: #567662;">
+                            <ul>
+                                <li class="element-number">11</li>
+                                <li class="element-symbol"> Na</li>
+                                <li class="element-name"><h4>Sodium</h4></li>
+                                <li class="element-molar">22.989769</li>
+                                <li class="element-electron">2 8 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #719880;">
+                            <ul>
+                                <li class="element-number">12</li>
+                                <li class="element-symbol"> Mg</li>
+                                <li class="element-name"><h4>Magnesium</h4></li>
+                                <li class="element-molar">24.305</li>
+                                <li class="element-electron">2 8 2</li>
+                            </ul>
+                        </td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">13</li>
+                                <li class="element-symbol"> Al</li>
+                                <li class="element-name"><h4>Aluminium</h4></li>
+                                <li class="element-molar">26.981539</li>
+                                <li class="element-electron">2 8 3</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #B8CCC0;">
+                            <ul>
+                                <li class="element-number">14</li>
+                                <li class="element-symbol"> Si</li>
+                                <li class="element-name"><h4>Silicon</h4></li>
+                                <li class="element-molar">28.0855</li>
+                                <li class="element-electron">2 8 4</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">15</li>
+                                <li class="element-symbol"> P</li>
+                                <li class="element-name"><h4>Phosphorus</h4></li>
+                                <li class="element-molar">30.973763</li>
+                                <li class="element-electron">2 8 5</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">16</li>
+                                <li class="element-symbol"> S</li>
+                                <li class="element-name"><h4>Sulfur</h4></li>
+                                <li class="element-molar">32.065</li>
+                                <li class="element-electron">2 8 6</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">17</li>
+                                <li class="element-symbol"> Cl</li>
+                                <li class="element-name"><h4>Chlorine</h4></li>
+                                <li class="element-molar">35.453</li>
+                                <li class="element-electron">2 8 7</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #E8EEEA;">
+                            <ul>
+                                <li class="element-number">18</li>
+                                <li class="element-symbol"> Ar</li>
+                                <li class="element-name"><h4>Argon</h4></li>
+                                <li class="element-molar">39.948</li>
+                                <li class="element-electron">2 8 8</li>
+                            </ul>
+                        </td>
+                    </tr><tr>
+                        <td class="element" style="background-color: #567662;">
+                            <ul>
+                                <li class="element-number">19</li>
+                                <li class="element-symbol"> K</li>
+                                <li class="element-name"><h4>Potassium</h4></li>
+                                <li class="element-molar">39.0983</li>
+                                <li class="element-electron">2 8 8 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #719880;">
+                            <ul>
+                                <li class="element-number">20</li>
+                                <li class="element-symbol"> Ca</li>
+                                <li class="element-name"><h4>Calcium</h4></li>
+                                <li class="element-molar">40.078</li>
+                                <li class="element-electron">2 8 8 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">21</li>
+                                <li class="element-symbol"> Sc</li>
+                                <li class="element-name"><h4>Scandium</h4></li>
+                                <li class="element-molar">44.955914</li>
+                                <li class="element-electron">2 8 9 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">22</li>
+                                <li class="element-symbol"> Ti</li>
+                                <li class="element-name"><h4>Titanium</h4></li>
+                                <li class="element-molar">47.867</li>
+                                <li class="element-electron">2 8 10 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">23</li>
+                                <li class="element-symbol"> V</li>
+                                <li class="element-name"><h4>Vanadium</h4></li>
+                                <li class="element-molar">50.9415</li>
+                                <li class="element-electron">2 8 11 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">24</li>
+                                <li class="element-symbol"> Cr</li>
+                                <li class="element-name"><h4>Chromium</h4></li>
+                                <li class="element-molar">51.9961</li>
+                                <li class="element-electron">2 8 13 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">25</li>
+                                <li class="element-symbol"> Mn</li>
+                                <li class="element-name"><h4>Manganese</h4></li>
+                                <li class="element-molar">54.938046</li>
+                                <li class="element-electron">2 8 13 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">26</li>
+                                <li class="element-symbol"> Fe</li>
+                                <li class="element-name"><h4>Iron</h4></li>
+                                <li class="element-molar">55.845</li>
+                                <li class="element-electron">2 8 14 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">27</li>
+                                <li class="element-symbol"> Co</li>
+                                <li class="element-name"><h4>Cobalt</h4></li>
+                                <li class="element-molar">58.933193</li>
+                                <li class="element-electron">2 8 15 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">28</li>
+                                <li class="element-symbol"> Ni</li>
+                                <li class="element-name"><h4>Nickel</h4></li>
+                                <li class="element-molar">58.6934</li>
+                                <li class="element-electron">2 8 16 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">29</li>
+                                <li class="element-symbol"> Cu</li>
+                                <li class="element-name"><h4>Copper</h4></li>
+                                <li class="element-molar">63.546</li>
+                                <li class="element-electron">2 8 18 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">30</li>
+                                <li class="element-symbol"> Zn</li>
+                                <li class="element-name"><h4>Zinc</h4></li>
+                                <li class="element-molar">65.38</li>
+                                <li class="element-electron">2 8 18 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">31</li>
+                                <li class="element-symbol"> Ga</li>
+                                <li class="element-name"><h4>Gallium</h4></li>
+                                <li class="element-molar">69.723</li>
+                                <li class="element-electron">2 8 18 3</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #B8CCC0;">
+                            <ul>
+                                <li class="element-number">32</li>
+                                <li class="element-symbol"> Ge</li>
+                                <li class="element-name"><h4>Germanium</h4></li>
+                                <li class="element-molar">72.63</li>
+                                <li class="element-electron">2 8 18 4</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #B8CCC0;">
+                            <ul>
+                                <li class="element-number">33</li>
+                                <li class="element-symbol"> As</li>
+                                <li class="element-name"><h4>Arsenic</h4></li>
+                                <li class="element-molar">74.9216</li>
+                                <li class="element-electron">2 8 18 5</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">34</li>
+                                <li class="element-symbol"> Se</li>
+                                <li class="element-name"><h4>Selenium</h4></li>
+                                <li class="element-molar">78.96</li>
+                                <li class="element-electron">2 8 18 6</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">35</li>
+                                <li class="element-symbol"> Br</li>
+                                <li class="element-name"><h4>Bromine</h4></li>
+                                <li class="element-molar">79.904</li>
+                                <li class="element-electron">2 8 18 7</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #E8EEEA;">
+                            <ul>
+                                <li class="element-number">36</li>
+                                <li class="element-symbol"> Kr</li>
+                                <li class="element-name"><h4>Krypton</h4></li>
+                                <li class="element-molar">83.798</li>
+                                <li class="element-electron">2 8 18 8</li>
+                            </ul>
+                        </td>
+                    </tr><tr>
+                        <td class="element" style="background-color: #567662;">
+                            <ul>
+                                <li class="element-number">37</li>
+                                <li class="element-symbol"> Rb</li>
+                                <li class="element-name"><h4>Rubidium</h4></li>
+                                <li class="element-molar">85.4678</li>
+                                <li class="element-electron">2 8 18 8 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #719880;">
+                            <ul>
+                                <li class="element-number">38</li>
+                                <li class="element-symbol"> Sr</li>
+                                <li class="element-name"><h4>Strontium</h4></li>
+                                <li class="element-molar">87.62</li>
+                                <li class="element-electron">2 8 18 8 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">39</li>
+                                <li class="element-symbol"> Y</li>
+                                <li class="element-name"><h4>Yttrium</h4></li>
+                                <li class="element-molar">88.90585</li>
+                                <li class="element-electron">2 8 18 9 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">40</li>
+                                <li class="element-symbol"> Zr</li>
+                                <li class="element-name"><h4>Zirconium</h4></li>
+                                <li class="element-molar">91.224</li>
+                                <li class="element-electron">2 8 18 10 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">41</li>
+                                <li class="element-symbol"> Nb</li>
+                                <li class="element-name"><h4>Niobium</h4></li>
+                                <li class="element-molar">92.90638</li>
+                                <li class="element-electron">2 8 18 12 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">42</li>
+                                <li class="element-symbol"> Mo</li>
+                                <li class="element-name"><h4>Molybdenum</h4></li>
+                                <li class="element-molar">95.96</li>
+                                <li class="element-electron">2 8 18 13 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">43</li>
+                                <li class="element-symbol"> Tc</li>
+                                <li class="element-name"><h4>Technetium</h4></li>
+                                <li class="element-molar">98</li>
+                                <li class="element-electron">2 8 18 13 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">44</li>
+                                <li class="element-symbol"> Ru</li>
+                                <li class="element-name"><h4>Ruthenium</h4></li>
+                                <li class="element-molar">101.07</li>
+                                <li class="element-electron">2 8 18 15 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">45</li>
+                                <li class="element-symbol"> Rh</li>
+                                <li class="element-name"><h4>Rhodium</h4></li>
+                                <li class="element-molar">102.9055</li>
+                                <li class="element-electron">2 8 18 16 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">46</li>
+                                <li class="element-symbol"> Pd</li>
+                                <li class="element-name"><h4>Palladium</h4></li>
+                                <li class="element-molar">106.42</li>
+                                <li class="element-electron">2 8 18 18</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">47</li>
+                                <li class="element-symbol"> Ag</li>
+                                <li class="element-name"><h4>Silver</h4></li>
+                                <li class="element-molar">107.8682</li>
+                                <li class="element-electron">2 8 18 18 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">48</li>
+                                <li class="element-symbol"> Cd</li>
+                                <li class="element-name"><h4>Cadmium</h4></li>
+                                <li class="element-molar">112.411</li>
+                                <li class="element-electron">2 8 18 18 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">49</li>
+                                <li class="element-symbol"> In</li>
+                                <li class="element-name"><h4>Indium</h4></li>
+                                <li class="element-molar">114.818</li>
+                                <li class="element-electron">2 8 18 18 3</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">50</li>
+                                <li class="element-symbol"> Sn</li>
+                                <li class="element-name"><h4>Tin</h4></li>
+                                <li class="element-molar">118.71</li>
+                                <li class="element-electron">2 8 18 18 4</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #B8CCC0;">
+                            <ul>
+                                <li class="element-number">51</li>
+                                <li class="element-symbol"> Sb</li>
+                                <li class="element-name"><h4>Antimony</h4></li>
+                                <li class="element-molar">121.76</li>
+                                <li class="element-electron">2 8 18 18 5</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #B8CCC0;">
+                            <ul>
+                                <li class="element-number">52</li>
+                                <li class="element-symbol"> Te</li>
+                                <li class="element-name"><h4>Tellurium</h4></li>
+                                <li class="element-molar">127.6</li>
+                                <li class="element-electron">2 8 18 18 6</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #D0DDD4;">
+                            <ul>
+                                <li class="element-number">53</li>
+                                <li class="element-symbol"> I</li>
+                                <li class="element-name"><h4>Iodine</h4></li>
+                                <li class="element-molar">126.90447</li>
+                                <li class="element-electron">2 8 18 18 7</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #E8EEEA;">
+                            <ul>
+                                <li class="element-number">54</li>
+                                <li class="element-symbol"> Xe</li>
+                                <li class="element-name"><h4>Xenon</h4></li>
+                                <li class="element-molar">131.293</li>
+                                <li class="element-electron">2 8 18 18 8</li>
+                            </ul>
+                        </td>
+                    </tr><tr>
+                        <td class="element" style="background-color: #567662;">
+                            <ul>
+                                <li class="element-number">55</li>
+                                <li class="element-symbol"> Cs</li>
+                                <li class="element-name"><h4>Caesium</h4></li>
+                                <li class="element-molar">132.90546</li>
+                                <li class="element-electron">2 8 18 18 8 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #719880;">
+                            <ul>
+                                <li class="element-number">56</li>
+                                <li class="element-symbol"> Ba</li>
+                                <li class="element-name"><h4>Barium</h4></li>
+                                <li class="element-molar">137.327</li>
+                                <li class="element-electron">2 8 18 18 8 2</li>
+                            </ul>
+                        </td>
+                    <td></td>
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">72</li>
+                                <li class="element-symbol"> Hf</li>
+                                <li class="element-name"><h4>Hafnium</h4></li>
+                                <li class="element-molar">178.49</li>
+                                <li class="element-electron">2 8 18 32 10 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">73</li>
+                                <li class="element-symbol"> Ta</li>
+                                <li class="element-name"><h4>Tantalum</h4></li>
+                                <li class="element-molar">180.94788</li>
+                                <li class="element-electron">2 8 18 32 11 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">74</li>
+                                <li class="element-symbol"> W</li>
+                                <li class="element-name"><h4>Tungsten</h4></li>
+                                <li class="element-molar">183.84</li>
+                                <li class="element-electron">2 8 18 32 12 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">75</li>
+                                <li class="element-symbol"> Re</li>
+                                <li class="element-name"><h4>Rhenium</h4></li>
+                                <li class="element-molar">186.207</li>
+                                <li class="element-electron">2 8 18 32 13 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">76</li>
+                                <li class="element-symbol"> Os</li>
+                                <li class="element-name"><h4>Osmium</h4></li>
+                                <li class="element-molar">190.23</li>
+                                <li class="element-electron">2 8 18 32 14 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">77</li>
+                                <li class="element-symbol"> Ir</li>
+                                <li class="element-name"><h4>Iridium</h4></li>
+                                <li class="element-molar">192.217</li>
+                                <li class="element-electron">2 8 18 32 15 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">78</li>
+                                <li class="element-symbol"> Pt</li>
+                                <li class="element-name"><h4>Platinum</h4></li>
+                                <li class="element-molar">195.084</li>
+                                <li class="element-electron">2 8 18 32 17 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">79</li>
+                                <li class="element-symbol"> Au</li>
+                                <li class="element-name"><h4>Gold</h4></li>
+                                <li class="element-molar">196.96657</li>
+                                <li class="element-electron">2 8 18 32 18 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">80</li>
+                                <li class="element-symbol"> Hg</li>
+                                <li class="element-name"><h4>Mercury</h4></li>
+                                <li class="element-molar">200.59</li>
+                                <li class="element-electron">2 8 18 32 18 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">81</li>
+                                <li class="element-symbol"> Tl</li>
+                                <li class="element-name"><h4>Thallium</h4></li>
+                                <li class="element-molar">204.3833</li>
+                                <li class="element-electron">2 8 18 32 18 3</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">82</li>
+                                <li class="element-symbol"> Pb</li>
+                                <li class="element-name"><h4>Lead</h4></li>
+                                <li class="element-molar">207.2</li>
+                                <li class="element-electron">2 8 18 32 18 4</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">83</li>
+                                <li class="element-symbol"> Bi</li>
+                                <li class="element-name"><h4>Bismuth</h4></li>
+                                <li class="element-molar">208.9804</li>
+                                <li class="element-electron">2 8 18 32 18 5</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">84</li>
+                                <li class="element-symbol"> Po</li>
+                                <li class="element-name"><h4>Polonium</h4></li>
+                                <li class="element-molar">209</li>
+                                <li class="element-electron">2 8 18 32 18 6</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #A0BAAA;">
+                            <ul>
+                                <li class="element-number">85</li>
+                                <li class="element-symbol"> At</li>
+                                <li class="element-name"><h4>Astatine</h4></li>
+                                <li class="element-molar">210</li>
+                                <li class="element-electron">2 8 18 32 18 7</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #E8EEEA;">
+                            <ul>
+                                <li class="element-number">86</li>
+                                <li class="element-symbol"> Rn</li>
+                                <li class="element-name"><h4>Radon</h4></li>
+                                <li class="element-molar">222</li>
+                                <li class="element-electron">2 8 18 32 18 8</li>
+                            </ul>
+                        </td>
+                    </tr><tr>
+                        <td class="element" style="background-color: #567662;">
+                            <ul>
+                                <li class="element-number">87</li>
+                                <li class="element-symbol"> Fr</li>
+                                <li class="element-name"><h4>Francium</h4></li>
+                                <li class="element-molar">223</li>
+                                <li class="element-electron">2 8 18 32 18 8 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #719880;">
+                            <ul>
+                                <li class="element-number">88</li>
+                                <li class="element-symbol"> Ra</li>
+                                <li class="element-name"><h4>Radium</h4></li>
+                                <li class="element-molar">226</li>
+                                <li class="element-electron">2 8 18 32 18 8 2</li>
+                            </ul>
+                        </td>
+                    <td></td>
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">104</li>
+                                <li class="element-symbol"> Rf</li>
+                                <li class="element-name"><h4>Rutherfordium</h4></li>
+                                <li class="element-molar">267</li>
+                                <li class="element-electron">2 8 18 32 32 10 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">105</li>
+                                <li class="element-symbol"> Db</li>
+                                <li class="element-name"><h4>Dubnium</h4></li>
+                                <li class="element-molar">268</li>
+                                <li class="element-electron">2 8 18 32 32 11 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">106</li>
+                                <li class="element-symbol"> Sg</li>
+                                <li class="element-name"><h4>Seaborgium</h4></li>
+                                <li class="element-molar">271</li>
+                                <li class="element-electron">2 8 18 32 32 12 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">107</li>
+                                <li class="element-symbol"> Bh</li>
+                                <li class="element-name"><h4>Bohrium</h4></li>
+                                <li class="element-molar">272</li>
+                                <li class="element-electron">2 8 18 32 32 13 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">108</li>
+                                <li class="element-symbol"> Hs</li>
+                                <li class="element-name"><h4>Hassium</h4></li>
+                                <li class="element-molar">270</li>
+                                <li class="element-electron">2 8 18 32 32 14 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">109</li>
+                                <li class="element-symbol"> Mt</li>
+                                <li class="element-name"><h4>Meitnerium</h4></li>
+                                <li class="element-molar">276</li>
+                                <li class="element-electron">2 8 18 32 32 15 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">110</li>
+                                <li class="element-symbol"> Ds</li>
+                                <li class="element-name"><h4>Darmstadtium</h4></li>
+                                <li class="element-molar">281</li>
+                                <li class="element-electron">2 8 18 32 32 17 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">111</li>
+                                <li class="element-symbol"> Rg</li>
+                                <li class="element-name"><h4>Roentgenium</h4></li>
+                                <li class="element-molar">280</li>
+                                <li class="element-electron">2 8 18 32 32 18 1</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">112</li>
+                                <li class="element-symbol"> Cn</li>
+                                <li class="element-name"><h4>Copernicium</h4></li>
+                                <li class="element-molar">285</li>
+                                <li class="element-electron">2 8 18 32 32 18 2</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">113</li>
+                                <li class="element-symbol"> Uut</li>
+                                <li class="element-name"><h4>Ununtrium</h4></li>
+                                <li class="element-molar">284</li>
+                                <li class="element-electron">2 8 18 32 32 18 3</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">114</li>
+                                <li class="element-symbol"> Fl</li>
+                                <li class="element-name"><h4>Flerovium</h4></li>
+                                <li class="element-molar">289</li>
+                                <li class="element-electron">2 8 18 32 32 18 4</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">115</li>
+                                <li class="element-symbol"> Uup</li>
+                                <li class="element-name"><h4>Ununpentium</h4></li>
+                                <li class="element-molar">288</li>
+                                <li class="element-electron">2 8 18 32 32 18 5</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">116</li>
+                                <li class="element-symbol"> Lv</li>
+                                <li class="element-name"><h4>Livermorium</h4></li>
+                                <li class="element-molar">293</li>
+                                <li class="element-electron">2 8 18 32 32 18 6</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">117</li>
+                                <li class="element-symbol"> Uus</li>
+                                <li class="element-name"><h4>Ununseptium</h4></li>
+                                <li class="element-molar">294</li>
+                                <li class="element-electron">2 8 18 32 32 18 7</li>
+                            </ul>
+                        </td>
+                    
+                        <td class="element" style="background-color: #89A995;">
+                            <ul>
+                                <li class="element-number">118</li>
+                                <li class="element-symbol"> Uuo</li>
+                                <li class="element-name"><h4>Ununoctium</h4></li>
+                                <li class="element-molar">294</li>
+                                <li class="element-electron">2 8 18 32 32 18 8</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+        </body>
+    </html>
+    

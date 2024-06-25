@@ -398,9 +398,10 @@ def periodic_table(elements: dict) -> str:
     
     html_content = """
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
         <head>
             <title>Periodic Table</title>
+            <meta charset="utf-8">
             <style>
                 """ + style + """
             </style>
