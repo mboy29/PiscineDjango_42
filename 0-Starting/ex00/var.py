@@ -38,6 +38,16 @@ def my_var() -> None:
 # -------------
 
 def main() -> None:
+
+    """
+    Main function for the program.
+    Calls the required function.
+
+    Parameters: None
+
+    Returns: None
+    """
+    
     my_var()
     
 
