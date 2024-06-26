@@ -158,7 +158,7 @@ def main() -> None:
         print(f"{INFO}--------------------------------{NC}")
         other.work()
     except Exception as exc:
-        t_err(exc)
+        print(exc)
 
 
 # Main
