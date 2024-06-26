@@ -435,39 +435,3 @@ class Br(Elem):
         """
         
         super().__init__(tag='br', attr=attr, tag_type='simple')
-
-
-# Main Function
-# -------------
-
-def main() -> None:
-    
-    """
-    Main function of the script to test the new HTML element classes
-    by creating an HTML element and printing it in the console.
-
-    Parameters: None
-
-    Returns: None
-    """
-    
-    html = Html([
-        Head([
-            Title(Text('"Hello ground!"'))
-        ]),
-        Body([
-            H1(Text('"Oh no, not again!"')),
-            Img(attr={'src': 'http://i.imgur.com/pfp3T.jpg'})
-        ])
-    ])
-    print(html)
-
-
-# Main
-# ----
-
-if __name__ == '__main__':
-    try:
-        main()
-    except Exception as exc:
-        print(exc)

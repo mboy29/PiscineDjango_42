@@ -172,37 +172,3 @@ class Elem:
 				(type(content) == list and all([type(elem) == Text or
 												isinstance(elem, Elem)
 												for elem in content])))
-
-# Main Function
-# -------------
-
-def main() -> None:
-
-	"""
-	Main function of the script to test the Elem class by creating an HTML
-	element and printing it in the console.
-
-	Parameters: None
-
-	Returns: None
-	"""
-
-	elem = Elem(tag='html',
-				content=[Elem(tag='head',
-				content=Elem(tag='title', content=Text('"Hello ground!"'))),
-				Elem(tag='body',
-				content=[Elem(tag='h1', content=Text('"Oh no, not again!"')),
-				Elem(tag='img', tag_type='simple',
-				attr={'src':'http://i.imgur.com/pfp3T.jpg'})])])
-	print(elem)
-
-# Main
-# ----
-
-
-if __name__ == '__main__':
-	
-	try:
-		main()
-	except Exception as exc:
-		print(exc)
