@@ -1,7 +1,18 @@
 # Imports
 # -------
-import sys, random
+import random
 import beverages
+
+
+# Global Variables
+# ----------------
+
+ERROR = '\033[0;31m'
+SUCCESS = '\033[0;32m'
+INFO = '\033[0;34m'
+WARNING = '\033[0;33m'
+NC = '\033[0m'
+
 
 # Classes
 # -------
@@ -125,6 +136,7 @@ class CoffeeMachine:
 # -----
 
 def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
+    
     """
     Prints an error message in red and, if required, 
     the usage of the program.
@@ -138,23 +150,23 @@ def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
 
     Returns: None
     """
-    print(f"\033[0;31m[ERROR] {msg}\033[0m")
+
+    print(f"{ERROR}[ERROR] {msg}{NC}")
     if usage:
-        print("\033[0;33m[USAGE] python3 machine.py\033[0m")
+        print(f"{WARNING}[USAGE] python3 beverages.py{NC}")
     exit(code)
 
 
-# Functions
-# ---------
+# Main Function
+# -------------
+def main() -> None:
 
-def test() -> None:
-    
     """
-    Function to test the CoffeeMachine class and its methods.
+    Main function to test the CoffeeMachine class and its methods.
     Instantiates the CoffeeMachine and requests beverages until the machine 
     breaks down, repairs the machine and repeats until the machine breaks
     down again.
-    Testing stops as soon as it has demonstated twice that the breking/fxing
+    Testing stops as soon as it has demonstrated twice that the breaking/fixing
     implementation is working as expected.
     
     Parameters: None
@@ -171,46 +183,30 @@ def test() -> None:
         beverages.Cappuccino
     ]
 
+    print(f"{INFO}Testing CoffeeMachine...{NC}")
+    print(f"{INFO}{'-' * 21}{NC}\n")
+    
     while breakpoint < 2:
         try:
-            for _ in range(15): 
+            for i in range(15): 
                 beverage_class = random.choice(beverages_list)
                 beverage = machine.serve(beverage_class)
+                print(f"{INFO}Serving Beverage {i+1}: {beverage_class.__name__}{NC}")
+                print(f"{INFO}{'-' * (20 + len(beverage_class.__name__))}{NC}")
                 print(beverage, end="\n\n")
         except CoffeeMachine.BrokenMachineException as e:
-            print(e)
-            print("Repairing the machine...")
+            print(f"{ERROR}[ERROR] {e}{NC}\n")
+            print(f"{INFO}[INFO] Repairing the machine...{NC}\n")
             breakpoint += 1
             machine.repair()
-            if breakpoint < 2:
-                print()
-
-
-# Main Function
-# -------------
-
-def main(arg: list) -> None:
-
-    """
-    Main function of the script to test all classes
-    initiated beforehand.
-
-    Parameters:
-        arg (list) - The list of arguments.
+            if breakpoint <= 2:
+                print(f"{SUCCESS}[SUCCESS] Machine repaired.{NC}\n")
     
-    Returns: None
-    """
-
-    if len(arg) != 0:
-        t_err("Invalid number of arguments", True)
-    test()
-    
-
 # Main
 # ----
 
 if __name__ == "__main__":
     try:
-        main(sys.argv[1:])
+        main()
     except Exception as exc:
         t_err(exc)

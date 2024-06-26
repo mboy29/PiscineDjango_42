@@ -2,6 +2,17 @@
 # -------
 from elem import *
 
+
+# Global Variables
+# ----------------
+
+ERROR = '\033[0;31m'
+SUCCESS = '\033[0;32m'
+INFO = '\033[0;34m'
+WARNING = '\033[0;33m'
+NC = '\033[0m'
+
+
 # Classes
 # -------
 
@@ -437,6 +448,31 @@ class Br(Elem):
         super().__init__(tag='br', attr=attr, tag_type='simple')
 
 
+# Tools
+# -----
+
+def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
+    
+    """
+    Prints an error message in red and, if required, 
+    the usage of the program.
+
+    Parameters:
+        msg (str) - The error message to print.
+        usage (bool) - Whether to print the usage of 
+            the program, defaults to False.    
+        code (int) - The error code to exit, defaults
+            to 1.
+
+    Returns: None
+    """
+
+    print(f"{ERROR}[ERROR] {msg}{NC}")
+    if usage:
+        print(f"{WARNING}[USAGE] python3 beverages.py{NC}")
+    exit(code)
+
+
 # Main Function
 # -------------
 
@@ -451,16 +487,62 @@ def main() -> None:
     Returns: None
     """
     
-    html = Html([
-        Head([
-            Title(Text('"Hello ground!"'))
-        ]),
-        Body([
-            H1(Text('"Oh no, not again!"')),
-            Img(attr={'src': 'http://i.imgur.com/pfp3T.jpg'})
+    try:
+        print(f"{INFO}[INFO] Test 1: previous output{NC}")
+        print(f"{INFO}------------------------------{NC}")
+        html = Html([
+            Head([
+                Title(Text('"Hello ground!"'))
+            ]),
+            Body([
+                H1(Text('"Oh no, not again!"')),
+                Img(attr={'src': 'http://i.imgur.com/pfp3T.jpg'})
+            ])
         ])
-    ])
-    print(html)
+        print(html, end='\n\n')
+        
+        print(f"{INFO}[INFO] Test 2: new output{NC}")
+        print(f"{INFO}-------------------------{NC}")
+        html = Html([
+            Head([
+                Title([Text('"Hello ground!"')]),
+                Meta(attr={'charset': 'UTF-8'})
+            ]),
+            Body([
+                H1([Text('"Oh no, not again!"')]),
+                Img(attr={'src': 'http://i.imgur.com/pfp3T.jpg', 'alt': 'A funny image'}),
+                H2([Text('"Subheading here"')]),
+                P([Text('"This is a paragraph with some text."')]),
+                Div([
+                    P([Text('"This is a paragraph inside a div."')]),
+                    Span([Text('"This is a span inside a div."')])
+                ], attr={'class': 'content'}),
+                Table([
+                    Tr([
+                        Th([Text('"Header 1"')]),
+                        Th([Text('"Header 2"')])
+                    ]),
+                    Tr([
+                        Td([Text('"Data 1"')]),
+                        Td([Text('"Data 2"')])
+                    ])
+                ]),
+                Ul([
+                    Li([Text('"List item 1"')]),
+                    Li([Text('"List item 2"')])
+                ]),
+                Ol([
+                    Li([Text('"Ordered item 1"')]),
+                    Li([Text('"Ordered item 2"')])
+                ]),
+                Hr(),
+                Br()
+            ])
+        ])
+        print(html)
+
+    except Exception as exc:
+        t_err(str(exc))
 
 
 # Main

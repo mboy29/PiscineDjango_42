@@ -1,9 +1,13 @@
-# Imports
-# -------
-import sys
+# Global Variables
+# ----------------
 
-# Classes
-# -------
+ERROR = '\033[0;31m'
+SUCCESS = '\033[0;32m'
+INFO = '\033[0;34m'
+WARNING = '\033[0;33m'
+NC = '\033[0m'
+
+
 # Classes
 # -------
 
@@ -109,7 +113,7 @@ class Tea(HotBeverage):
         and setting the price and the name.
 
         Parameters:
-            price (float) - The price of the tea, defaults to 0.40.
+            price (float) - The price of the tea, defaults to 0.30.
             name (str) - The name of the tea, defaults to "tea".
         
         Returns: None
@@ -131,7 +135,7 @@ class Chocolate(HotBeverage):
         and setting the price and the name.
 
         Parameters:
-            price (float) - The price of the chocolate, defaults to 0.40.
+            price (float) - The price of the chocolate, defaults to 0.50.
             name (str) - The name of the chocolate, defaults to "chocolate".
         
         Returns: None
@@ -166,7 +170,7 @@ class Cappuccino(HotBeverage):
         and setting the price and the name.
 
         Parameters:
-            price (float) - The price of the cappuccino, defaults to 0.40.
+            price (float) - The price of the cappuccino, defaults to 0.45.
             name (str) - The name of the cappuccino, defaults to "cappuccino".
 
         Returns: None
@@ -192,6 +196,7 @@ class Cappuccino(HotBeverage):
 # -----
 
 def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
+    
     """
     Prints an error message in red and, if required, 
     the usage of the program.
@@ -205,19 +210,20 @@ def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
 
     Returns: None
     """
-    print(f"\033[0;31m[ERROR] {msg}\033[0m")
+    
+    print(f"{ERROR}[ERROR] {msg}{NC}")
     if usage:
-        print("\033[0;33m[USAGE] python3 beverages.py\033[0m")
+        print(f"{WARNING}[USAGE] python3 beverages.py{NC}")
     exit(code)
 
 
-# Functions
-# ---------
+# Main Function
+# -------------
 
-def test() -> None:
+def main() -> None:
 
     """
-    Function to test classes and their methods:
+    Main function to test classes and their methods:
     - HotBeverage;
     - Coffee;
     - Tea;
@@ -238,42 +244,22 @@ def test() -> None:
             Cappuccino(),
         ]
 
-        for beverage in beverages:
+        for idx, beverage in enumerate(beverages):
+            print(f"{INFO}Test {idx}: {beverage.name}...{NC}")
+            print(f"{INFO}--------{'-' * len(beverage.name)}---{NC}")
             if beverage == beverages[-1]:
                 print(beverage)
             else:
                 print(beverage, end="\n\n")
 
     except Exception as e:
-        print(e)
-
-
-# Main Function
-# -------------
-
-def main(arg: list) -> None:
-
-    """
-    Main function of the script to test all classes
-    initiated beforehand.
-
-    Parameters:
-        arg (list) - The list of arguments.
-    
-    Returns: None
-    """
-
-    if len(arg) != 0:
-        t_err("Invalid number of arguments", True)
-    test()
-    
-    
+        t_err(e)
 
 # Main
 # ----
 
 if __name__ == "__main__":
     try:
-        main(sys.argv[1:])
+        main()
     except Exception as exc:
         t_err(exc)

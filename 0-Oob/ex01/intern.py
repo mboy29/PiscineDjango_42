@@ -2,6 +2,17 @@
 # -------
 import sys
 
+
+# Global Variables
+# ----------------
+
+ERROR = '\033[0;31m'
+SUCCESS = '\033[0;32m'
+INFO = '\033[0;34m'
+WARNING = '\033[0;33m'
+NC = '\033[0m'
+
+
 # Classes
 # -------
 
@@ -84,6 +95,7 @@ class Intern:
     
         return Coffee()
 
+
 # Tools
 # -----
 
@@ -102,23 +114,24 @@ def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
 
     Returns: None
     """
-    
-    print(f"\033[0;31m[ERROR] {msg}\033[0m")
+
+    print(f"{ERROR}[ERROR] {msg}{NC}")
     if usage:
-        print("\033[0;33m[USAGE] python3 intern.py\033[0m")
+        print(f"{WARNING}[USAGE] python3 beverages.py{NC}")
     exit(code)
 
 
-# Functions
-# ---------
+# Main Function
+# -------------
 
-def test() -> None:
+def main() -> None:
 
     """
-    Function to test the Intern class and its methods:
+    Main function to test the Intern class and its methods:
     - Instantiate the Intern class without a name;
     - Instantiate the Intern class with the name "Mark";
     - Ask Mark to make coffee.
+    - Ask the other intern to work.
 
     Parameters: None
 
@@ -126,45 +139,33 @@ def test() -> None:
     """
 
     try:
-        intern1 = Intern()
-        print(intern1)
+        print(f"{INFO}Test 1: Instantiate the Intern class without a name{NC}")
+        print(f"{INFO}---------------------------------------------------{NC}")
+        other = Intern()
+        print(other)
 
-        intern2 = Intern("Mark")
-        print(intern2)
+        print(f"\n{INFO}Test 2: Instantiate the Intern class with the name 'Mark'{NC}")
+        print(f"{INFO}---------------------------------------------------------{NC}")
+        mark = Intern("Mark")
+        print(mark)
 
-        coffee = intern2.make_coffee()
+        print(f"\n{INFO}Test 3: Ask Mark to make coffee{NC}")
+        print(f"{INFO}--------------------------------{NC}")
+        coffee = mark.make_coffee()
         print(coffee)
 
-        intern1.work()
-    except Exception as e:
-        print(e)
+        print(f"\n{INFO}Test 4: Ask other intern to work{NC}")
+        print(f"{INFO}--------------------------------{NC}")
+        other.work()
+    except Exception as exc:
+        t_err(exc)
 
-
-# Main Function
-# -------------
-
-def main(arg: list) -> None:
-
-    """
-    Main function of the script to test the Intern class.
-
-    Parameters:
-        arg (list) - The list of arguments.
-    
-    Returns: None
-    """
-
-    if len(arg) != 0:
-        t_err("Invalid number of arguments", True)
-    test()
-    
-    
 
 # Main
 # ----
 
 if __name__ == "__main__":
     try:
-        main(sys.argv[1:])
+        main()
     except Exception as exc:
         t_err(exc)

@@ -41,7 +41,7 @@ def t_open(path: str) -> str:
     try:
         # check if path ends with .template
         if not path.endswith(".template"):
-            raise Exception(f"'{path}' is not a template file.")
+            raise Exception(f"'{path}' is not a .template file.")
         with open(path, "r") as f:
             return f.read()
     except FileNotFoundError:
@@ -78,7 +78,7 @@ def t_create(path: str, content: str) -> None:
 # Functions
 # ---------
 
-def render(template: str) -> None:
+def render(path: str) -> None:
 
     """
     Renders the template with the settings values.
@@ -89,10 +89,12 @@ def render(template: str) -> None:
     Returns: None
     """
     
+    template = t_open(path)
     settings_content = {attr: str(getattr(settings, attr)) for attr in dir(settings) if not callable(getattr(settings, attr)) and not attr.startswith("__")}
+    render = path.split(".")[0]
     for key, value in settings_content.items():
         template = template.replace(f"{{{{ {key} }}}}", value)
-    t_create("result.html", template)
+    t_create(f"{render}.html", template)
     print(f"\033[0;32m[SUCCESS] Render completed !\033[0m")
 
 
@@ -113,7 +115,7 @@ def main(arg: list) -> None:
 
     if len(arg) != 1:
         t_err("Invalid number of arguments", True)
-    render(t_open(arg[0]))
+    render(arg[0])
     
 
 # Main
