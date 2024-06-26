@@ -469,7 +469,7 @@ def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
 
     print(f"{ERROR}[ERROR] {msg}{NC}")
     if usage:
-        print(f"{WARNING}[USAGE] python3 beverages.py{NC}")
+        print(f"{WARNING}[USAGE] python3 elements.py{NC}")
     exit(code)
 
 
