@@ -6,6 +6,7 @@ import antigravity
 
 # Global Variables
 # ----------------
+
 ERROR = '\033[0;31m'
 SUCCESS = '\033[0;32m'
 INFO = '\033[0;34m'
@@ -55,26 +56,41 @@ def t_parse(args: list) -> tuple:
     if len(args) != 4:
         t_err("Invalid number of arguments", usage=True)
 
-    lat = float(args[0])
-    lon = float(args[1])
-    date = args[2]
-    djia = float(args[3])
-    
-    if not date.count('-') == 2 or len(date) != 10:
-        # check if valid date
-        split_date = date.split('-')
-        if not len(split_date) == 3:
-            raise Exception("Invalid date format")
-        year, month, day = split_date
-        if not year.isdigit() or not month.isdigit() or not day.isdigit():
-            raise Exception("Invalid date format")
-        if not 1 <= int(month) <= 12 or not 1 <= int(day) <= 31:
-            raise Exception("Invalid date format")
-        if not len(year) == 4 or not len(month) == 2 or not len(day) == 2:
-            raise Exception("Invalid date format")
+    try:
 
-        raise Exception("Invalid date format")
-    return lat, lon, date, djia
+        try: latitude = float(args[0])
+        except ValueError: raise Exception("Invalid argument, latitude must be a float")
+
+        try: lon = float(args[1])
+        except ValueError: raise Exception("Invalid argument, longitude must be a float")
+
+        try: djia = float(args[3])
+        except ValueError: raise Exception("Invalid argument, DJIA must be a float")
+
+        try:
+            date = args[2]
+            split_date = date.split("-")
+            if len(split_date) != 3:
+                raise Exception("Invalid argument, date must be in the format YYYY-MM-DD")
+            year, month, day = split_date
+            print(year, month, day)
+            if not year.isdigit() or not month.isdigit() or not day.isdigit():
+                raise Exception("Invalid argument, date must be in the format YYYY-MM-DD")
+            if int(year) < 0: 
+                raise Exception("Invalid argument, year must be between 1970 and 2038")
+            elif not 1 <= int(month) <= 12:
+                raise Exception("Invalid argument, month must be between 1 and 12")
+            elif int(month) in [1, 3, 5, 7, 8, 10, 12] and not 1 <= int(day) <= 31:
+                raise Exception("Invalid argument, day must be between 1 and 31")
+            elif int(month) in [2, 4, 6, 9, 11] and not 1 <= int(day) <= 30:
+                raise Exception("Invalid argument, day must be between 1 and 30")
+        
+        except ValueError:
+            raise Exception("Invalid argument, date must be a string")
+        
+        return latitude, lon, date, djia
+    except Exception as e:
+        t_err(f"Invalid arguments: {e}", usage=True)
 
 
 # Functions

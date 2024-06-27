@@ -1,8 +1,3 @@
-# Imports
-# -------
-import sys
-
-
 # Global Variables
 # ----------------
 
@@ -15,26 +10,6 @@ NC = '\033[0m'
 
 # Classes
 # -------
-
-class Coffee:
-
-    """
-    Coffee class, representing a coffee.
-    """
-
-    def __str__(self) -> str:
-        
-        """
-        Method to return the string representation of the Coffee object.
-
-        Parameters: None
-
-        Returns: 
-            - str: The string representation of the Coffee object.
-        """
-       
-        return "This is the worst coffee you ever tasted."
-
 
 class Intern:
     
@@ -70,6 +45,25 @@ class Intern:
 
         return self.name
 
+    class Coffee:
+
+        """
+        Coffee class, representing a coffee.
+        """
+
+        def __str__(self) -> str:
+            
+            """
+            Method to return the string representation of the Coffee object.
+
+            Parameters: None
+
+            Returns: 
+                - str: The string representation of the Coffee object.
+            """
+        
+            return "This is the worst coffee you ever tasted."
+
     def work(self):
         
         """
@@ -93,7 +87,7 @@ class Intern:
             - Coffee: A Coffee object.
         """
     
-        return Coffee()
+        return self.Coffee()
 
 
 # Tools
