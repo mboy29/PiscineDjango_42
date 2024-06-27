@@ -1,9 +1,3 @@
-# Imports
-# -------
-import sys
-import settings
-
-
 # Tools
 # -----
 
@@ -73,6 +67,16 @@ def t_create(path: str, content: str) -> None:
         t_err(f"No permission to write '{path}'.")
     except Exception as exc:
         t_err(exc)
+
+
+# Imports
+# -------
+import sys
+
+try:
+    import settings
+except ImportError:
+    t_err("settings.py not found.")
 
 
 # Functions
