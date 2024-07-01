@@ -1,6 +1,7 @@
 # Imports
 # -------
-import sys, requests, dewiki
+import sys, requests
+from bs4 import BeautifulSoup
 
 
 # Global Variables
@@ -12,7 +13,50 @@ INFO = '\033[0;34m'
 WARNING = '\033[0;33m'
 NC = '\033[0m'
 
-WIKI_API_URL = "https://en.wikipedia.org/w/api.php"
+WIKI_URL = "https://en.wikipedia.org/wiki/"
+
+WIKI_INVALID_SUBSTRINGS = [
+    "/wiki/Help:", 
+    "/wiki/Wikipedia:", 
+    "/wiki/File:", 
+    "/wiki/Special:", 
+    "/wiki/Template:", 
+    "/wiki/Category:", 
+    "/wiki/Portal:", 
+    "/wiki/Talk:"
+]
+
+
+# Exceptions
+# ----------
+
+class DeadEnd(Exception):
+
+    def __init__(self, message: str = "It leads to a dead end !") -> None:
+        super().__init__(message)
+    
+    def __str__(self) -> str:
+        return super().__str__()
+
+class InfiniteLoop(Exception):
+
+    def __init__(self, message: str = "It leads to an infinite loop !") -> None:
+        super().__init__(message)
+    
+    def __str__(self) -> str:
+        return super().__str__()
+
+class RoadsToPhilosophy(Exception):
+
+    def __init__(self, roads: list, message: str = "It leads to Philosophy.") -> None:
+        super().__init__(message)
+        self.roads = roads
+    
+    def __str__(self) -> str:
+        ret = f"{len(self.roads)} roads from {self.roads[0] if len(self.roads) != 0 else 'Philosophy'} to Philosophy:"
+        for road in self.roads:
+            ret += f"\n - {road}"
+        return ret
 
 
 # Tools
@@ -36,78 +80,102 @@ def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
     
     print(f"{ERROR}[ERROR] {msg}{NC}")
     if usage:
-        print(f"{WARNING}[USAGE] python3 request_wikipedia.py{NC}")
+        print(f"{WARNING}[USAGE] python3 roads_to_philosophy.py <key word(s) to search>{NC}")
     exit(code)
 
-def t_create(path: str, content: str) -> None:
+def t_success(msg: str) -> None:
 
     """
-    Creates a file in the given path with the given content.
+    Prints a success message in green.
 
     Parameters:
-        path (str) - The path to create the file.
-        content (str) - The content of the file.
+        msg (str) - The success message to print.
     
     Returns: None
     """
 
-    try:
-        with open(path, "w") as file:
-            file.write(content)
-        print(f"{SUCCESS}[SUCCESS] File created: {path}")
-    except Exception as e:
-        t_err(f"Failed to create file: {e}")
+    print(f"{SUCCESS}[SUCCESS] {msg}{NC}")
+
+def t_info(msg: str) -> None:
+
+    """
+    Prints an information message in blue.
+
+    Parameters:
+        msg (str) - The information message to print.
+
+    Returns: None
+    """
+
+    print(f"{INFO}[INFO] {msg}{NC}")
 
 
 # Functions
 # ---------
 
-def request_wikipedia(search: str) -> None:
+def roads_to_philosophy(key_words: str, roads: list = []) -> None:
 
     """
-    Makes a request to the Wikipedia API to get a specific
-    page and returns the content of the page.
-    Raises am exception if the page does not exist.
+    Function that recursively searches for the first link
+    in the content of the Wikipedia page corresponding to
+    the given search key words, and continues the search
+    until it reaches the Philosophy page, or a dead end, or
+    an infinite loop (exception raised in each case).
 
     Parameters:
-        page (str) - The page to request.
+        key_words (str) - The key words to search for in 
+            Wikipedia.
+        roads (list) - The list of roads to Philosophy, 
+            defaults to an empty list.
     
     Returns: None
     """
 
-    response = requests.get(WIKI_API_URL, params={
-        "action": "parse",
-        "page": search,
-        "prop": "wikitext",
-        "format": "json",
-        "redirects": "true"
-    })
+    response = requests.get(WIKI_URL + key_words)
+    if response.status_code != 200:
+        raise DeadEnd()
     response.raise_for_status()
-    data = response.json()
-    if data.get("error") is not None:
-        raise Exception(data["error"]["info"])
-    return dewiki.from_string(data["parse"]["wikitext"]["*"]).strip()
+    soup = BeautifulSoup(response.text, 'html.parser')
+    title = soup.find(id="firstHeading").text
+    if title in roads:
+        raise InfiniteLoop()
+    roads.append(title)
+    if title == "Philosophy":    
+        raise RoadsToPhilosophy(roads)
+    content = soup.find(id="mw-content-text")
+    for paragraph in content.find_all("p", recursive=True):
+        for link in paragraph.find_all("a", recursive=True):
+            href = link.get("href")
+            if href is not None and href.startswith("/wiki/") and all(sub not in href for sub in WIKI_INVALID_SUBSTRINGS):
+                return roads_to_philosophy(href[6:], roads)
+    raise DeadEnd()
 
 
 # Main Function
 # -------------
 
 def main(args: list) -> None:
-    
-    """
-    
-    """
-    try:
-        # python3 -m venv env
-        # source env/bin/activate
-        # pip install -r requirement.txt
-        # deactivate
 
+    """
+    Main function of the program, checks the number of arguments
+    and starts the search for roads to Philosophy from the given
+    key words.
+
+    Parameters:
+        args (list) - The list of arguments passed to the program.
+    
+    Returns: None
+    """
+
+    try:
         if len(args) != 1:
             t_err("Invalid number of arguments", usage=True)
-        response = request_wikipedia(args[0])
-        t_create(f"{args[0]}.wiki", response)
-
+        t_info(f'Searching roads to Philosophy starting from "{args[0]}"...')
+        roads_to_philosophy(' '.join(args[0].split()))
+    except RoadsToPhilosophy as exc:
+        t_success(exc)
+    except (DeadEnd, InfiniteLoop) as exc:
+        t_err(exc)
     except Exception as exc:
         t_err(exc, usage=True)
 
@@ -120,3 +188,8 @@ if __name__ == '__main__':
         main(sys.argv[1:])
     except Exception as exc:
         t_err(f"Unhandled exception: {exc}", usage=True)
+
+# python3 -m venv env
+# source env/bin/activate
+# pip install -r requirement.txt
+# deactivate

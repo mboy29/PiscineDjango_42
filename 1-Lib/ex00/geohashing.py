@@ -73,7 +73,6 @@ def t_parse(args: list) -> tuple:
             if len(split_date) != 3:
                 raise Exception("Invalid argument, date must be in the format YYYY-MM-DD")
             year, month, day = split_date
-            print(year, month, day)
             if not year.isdigit() or not month.isdigit() or not day.isdigit():
                 raise Exception("Invalid argument, date must be in the format YYYY-MM-DD")
             if int(year) < 0: 

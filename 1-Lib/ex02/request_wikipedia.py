@@ -1,6 +1,6 @@
 # Imports
 # -------
-import sys, requests, dewiki
+import sys, requests, dewiki, json
 
 
 # Global Variables
@@ -36,7 +36,7 @@ def t_err(msg: str, usage: bool = False, code: int = 1) -> None:
     
     print(f"{ERROR}[ERROR] {msg}{NC}")
     if usage:
-        print(f"{WARNING}[USAGE] python3 request_wikipedia.py{NC}")
+        print(f"{WARNING}[USAGE] python3 request_wikipedia.py <key word(s) to search>{NC}")
     exit(code)
 
 def t_create(path: str, content: str) -> None:
@@ -62,7 +62,7 @@ def t_create(path: str, content: str) -> None:
 # Functions
 # ---------
 
-def request_wikipedia(search: str) -> None:
+def request_wikipedia(key_words: str) -> None:
 
     """
     Makes a request to the Wikipedia API to get a specific
@@ -77,13 +77,13 @@ def request_wikipedia(search: str) -> None:
 
     response = requests.get(WIKI_API_URL, params={
         "action": "parse",
-        "page": search,
+        "page": key_words,
         "prop": "wikitext",
         "format": "json",
         "redirects": "true"
     })
     response.raise_for_status()
-    data = response.json()
+    data = json.loads(response.text)
     if data.get("error") is not None:
         raise Exception(data["error"]["info"])
     return dewiki.from_string(data["parse"]["wikitext"]["*"]).strip()
@@ -110,7 +110,7 @@ def main(args: list) -> None:
         if len(args) != 1:
             t_err("Invalid number of arguments", usage=True)
         response = request_wikipedia(args[0])
-        t_create(f"{args[0]}.wiki", response)
+        t_create(f"{'_'.join(args[0].split())}.wiki", response)
 
     except Exception as exc:
         t_err(exc, usage=True)
