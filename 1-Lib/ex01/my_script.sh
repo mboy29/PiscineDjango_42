@@ -64,6 +64,7 @@ $LIB_PATH/bin/python3 -m pip --version
 echo "\n${INFO}[INFO] Installing path.py library:"
 echo "----------------------------------${NC}"
 $LIB_PATH/bin/python3 -m pip install --log $LOG_PATH --force-reinstall --upgrade git+$PATH_PY_URL
+export PYTHONPATH=$LIB_PATH/lib/python3.*/site-packages
 
 # Execute the small program
 echo "\n${INFO}[INFO] Executing $PROGRAM_PATH:"
