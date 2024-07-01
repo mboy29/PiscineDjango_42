@@ -63,7 +63,7 @@ elif [ "$1" = "--deactivate" ]; then
     deactivate_venv
 else
     echo "${ERROR}[ERROR] Invalid argument: $1"
-    echo "${INFO}[USAGE] ./my_script.sh [--activate] [--deactivate]${NC}"
+    echo "${INFO}[USAGE] source ./my_script.sh [--activate] [--deactivate]${NC}"
     echo "${INFO} - Use --activate or no argument to activate virtual env.${NC}"
     echo "${INFO} - Use --deactivate to deactivate virtual env.${NC}"
 fi

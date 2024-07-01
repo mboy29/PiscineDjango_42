@@ -76,7 +76,7 @@ def t_parse(args: list) -> tuple:
             if not year.isdigit() or not month.isdigit() or not day.isdigit():
                 raise Exception("Invalid argument, date must be in the format YYYY-MM-DD")
             if int(year) < 0: 
-                raise Exception("Invalid argument, year must be between 1970 and 2038")
+                raise Exception("Invalid argument, year must be over 0")
             elif not 1 <= int(month) <= 12:
                 raise Exception("Invalid argument, month must be between 1 and 12")
             elif int(month) in [1, 3, 5, 7, 8, 10, 12] and not 1 <= int(day) <= 31:
