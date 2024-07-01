@@ -41,8 +41,8 @@ activate_venv() {
     if [ -n "$VIRTUAL_ENV" ]; then
         echo "Virtual env is already activated: $VENV_PATH"
     else
-        $PYTHON_PATH -m venv $VENV_PATH
-        source $VENV_PATH/bin/activate
+        $PYTHON_PATH -m virtualenv $VENV_PATH
+        . $VENV_PATH/bin/activate
         echo "Virtual env activated: $VENV_PATH"
 
         echo "\n${INFO}[INFO] Installing requirements..."

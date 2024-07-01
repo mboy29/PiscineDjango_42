@@ -47,8 +47,8 @@ fi
 # Setup venv
 echo "${INFO}[INFO] Setting up virtual env - venv..."
 echo "---------------------------------------${NC}"
-$PYTHON_PATH -m venv $LIB_PATH
-source $LIB_PATH/bin/activate
+$PYTHON_PATH -m virtualenv $LIB_PATH
+. $LIB_PATH/bin/activate
 echo "Virtual env activated: $LIB_PATH"
 
 # Upgrade pip and print its version

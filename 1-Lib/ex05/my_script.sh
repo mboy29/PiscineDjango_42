@@ -41,13 +41,13 @@ activate_venv() {
     if [ -n "$VIRTUAL_ENV" ]; then
         echo "Virtual env is already activated: $VENV_PATH"
     else
-        $PYTHON_PATH -m venv $VENV_PATH
+        $PYTHON_PATH -m virtualenv $VENV_PATH
         source $VENV_PATH/bin/activate
         echo "Virtual env activated: $VENV_PATH"
 
         echo "\n${INFO}[INFO] Installing requirements..."
         echo "----------------------------------${NC}"
-        python -m pip install --force-reinstall -r requirement.txt
+        python3 -m pip install --force-reinstall -r requirement.txt
     fi
     echo "\n${SUCCESS}[SUCCESS] Virtual env is ready!${NC}"
 }

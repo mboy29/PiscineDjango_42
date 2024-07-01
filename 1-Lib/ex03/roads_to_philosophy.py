@@ -53,7 +53,9 @@ class RoadsToPhilosophy(Exception):
         self.roads = roads
     
     def __str__(self) -> str:
-        ret = f"{len(self.roads)} roads from {self.roads[0] if len(self.roads) != 0 else 'Philosophy'} to Philosophy:"
+        ret = f"{len(self.roads)} roads from {self.roads[0] if len(self.roads) != 0 else 'Philosophy'} to Philosophy"
+        if len(self.roads) > 0:
+            ret += ":"
         for road in self.roads:
             ret += f"\n - {road}"
         return ret
@@ -131,6 +133,8 @@ def roads_to_philosophy(key_words: str, roads: list = []) -> None:
     Returns: None
     """
 
+    if roads == [] and key_words.title() == "Philosophy":
+        raise RoadsToPhilosophy(roads)
     response = requests.get(WIKI_URL + key_words)
     if response.status_code != 200:
         raise DeadEnd()
@@ -171,7 +175,7 @@ def main(args: list) -> None:
         if len(args) != 1:
             t_err("Invalid number of arguments", usage=True)
         t_info(f'Searching roads to Philosophy starting from "{args[0]}"...')
-        roads_to_philosophy(' '.join(args[0].split()))
+        roads_to_philosophy(' '.join(args[0].split()).title())
     except RoadsToPhilosophy as exc:
         t_success(exc)
     except (DeadEnd, InfiniteLoop) as exc:
