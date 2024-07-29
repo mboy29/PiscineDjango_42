@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ex01: Display process of a static page.{% endblock title %}
+
+{% block content %}
+    <div class="display">
+
+        <div class="header">
+            <h1>Display process of a static page</h1>
+            <p>When you request a static web page in Django, the process involves several steps, from the initial request to the final response. Here’s a step-by-step breakdown:</p>
+        </div>
+
+        <hr>
+
+        <div class="info">
+            <p><strong>1. The Request: </strong> The process begins when a user makes a request to the server for a specific URL. For example, if a user navigates to http://example.com/display/, Django receives this request.</p>
+            <p><strong>2. URL Routing: </strong>Django uses the URLconf to determine which view function should handle the request. The URLconf is a mapping between URL patterns and view functions defined in the Django project.</p>
+            <p><strong>3. View Processing: </strong>The view function processes the request and returns an HTTP response. In the case of a static web page, the view function typically renders a template that contains the static content.</p>
+            <p><strong>4. Template Rendering: </strong>The template engine processes the template and substitutes any template variables with their values. The resulting HTML content is sent back to the view function.</p>
+            <p><strong>5. Response: </strong>The view function returns an HTTP response containing the rendered HTML content. This response is sent back to the user’s browser, which displays the static web page.</p>
+        </div>
+        
+        <hr>
+
+        <div class="example">
+            <div>
+                <p>Here's an example of a view function in <code>views.py</code>:</p>
+                <pre><code>
+from django.shortcuts import render
+
+def display_view(request):
+    return render(request, 'display.html')
+                </code></pre>
+            </div>
+            <div>
+                <p>And the URL routing in <code>urls.py</code>:</p>
+                <pre><code>
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('display/', views.display_view, name='display'),
+]
+                </code></pre>
+            </div>
+        </div>
+
+        <hr>
+        
+        <a class="learn-more" href="https://www.djangoproject.com/">Learn more about Django</a>
+    </div>
+{% endblock content %}

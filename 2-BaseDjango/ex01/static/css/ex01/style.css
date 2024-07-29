@@ -1,0 +1,313 @@
+/* Global Styling
+----------------- */
+
+body {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    /* color: #424242; */
+    font-family: 'Arial', sans-serif;
+    font-size: 21pt;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 5px 0;
+}
+
+h2 {
+    /* color: black; */
+    font-family: 'Arial', sans-serif;
+    font-size: 14pt;
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin: 5px 0;
+}
+
+h3 {
+    /* color: black; */
+    font-family: 'Arial', sans-serif;
+    font-size: 10pt;
+    text-transform: uppercase;
+    clear: both;
+    margin: 0 0;
+}
+
+p, a {
+    /* color: black; */
+    font-family: 'Arial', sans-serif;
+    font-size: 10pt;
+    text-align: center;
+    text-decoration: none;
+}
+
+strong {
+    /* color: #424242; */
+    font-family: 'Arial', sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+hr {
+    /* color: black; */
+    width: 100%;
+    margin: 10px 0;
+}
+
+ol, ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style-type: none;
+    padding: 0 0 10px 0;
+    font-family: 'Arial', sans-serif;
+    font-size: 10pt;
+    text-align: center;
+    text-decoration: none;
+}
+
+nav {
+    background-color: #424242;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 20px 20px;
+    width: 50%;
+    padding: 10px;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+}
+
+nav ul li {
+    flex: 1;
+    text-align: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 10pt;
+}
+
+nav ul li a:hover {
+    font-weight: bold;
+}
+
+.header {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.learn-more {
+    background-color: #424242;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin-top: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.learn-more:hover {
+    color: black;
+}
+
+/* Django Styling
+----------------- */
+
+.django {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+}
+
+.django .info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.django .info div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+/* Display Styling
+------------------ */
+
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.display .info {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; /* Ensures left alignment */
+}
+
+.display .info p {
+    text-align: left;
+}
+
+.display .example {
+    display: flex;
+    justify-content: center;
+    align-items: space-evenly;
+    width: 100%;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.display .example div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
+
+.display code {
+    font-size: 10pt;
+    text-align: left;
+}
+
+.display pre {
+    background-color: #f4f4f4;
+    text-align: left;
+    border-radius: 4px;
+    padding: 10px;
+    width: 95%;
+    border: 1px solid #ddd;
+    font-size: 14pt;
+    height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+/* Template Styling
+------------------- */
+
+.templates {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+}
+
+
+.templates .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* .templates .info p {
+    padding: 0;
+    margin: 0;
+} */
+
+
+.templates .sub-info {
+    display: flex;
+    flex-direction: row;
+    justify-content:  space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.templates .sub-info div {
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.templates .sub-info div p {
+    margin: 0;
+    padding: 0;
+}
+
+.templates .sub-sub-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.templates .sub-sub-info div {
+    flex: 1;
+}
+
+.example h2 {
+    margin-top: 0;
+}
+
+.templates code {
+    font-size: 10pt;
+    text-align: left;
+}
+
+.templates pre {
+    background-color: #f4f4f4;
+    text-align: left;
+    border-radius: 4px;
+    padding: 10px;
+    width: 95%;
+    border: 1px solid #ddd;
+    font-size: 14pt;
+    height: 90px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

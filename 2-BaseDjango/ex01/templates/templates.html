@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ex01: Template engine.{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/ex01/style2.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <div class="templates">
+        <div class="header">
+            <h1>Template engine</h1>
+            <p>Django’s default template engine allows you to create dynamic web pages by separating the design from the data. This engine processes templates to render HTML dynamically based on context variables passed from the view.</p>
+        </div>
+
+        <hr>
+    
+        <div class="info">
+            <p><strong>1. Blocks: </strong>Blocks in Django templates are placeholders defined in a base template that child templates can override.</p>
+            <div class="sub-info">
+                <div>
+                    <p>For example, in a base template:</p>
+                    <pre><code>
+&lcub;% block content %&rcub;
+Content for the block.
+&lcub;% endblock content %&rcub;
+                    </code></pre>
+                </div>
+
+                <div>
+                    <p>Child templates can then fill in the content for this block:</p>
+                    <pre><code>
+&lcub;% extends 'base.html' %&rcub;
+&lcub;% block content %&rcub;
+    &lt;p&gt;This is the content for the block.&lt;/p&gt;
+&lcub;% endblock content %&rcub;
+                    </code></pre>
+                </div>
+            </div>
+
+            <div class="sub-sub-info">
+                <div class="example">
+                    <p><strong>2. Loops: </strong>The <code>for</code> template tag allows iteration over a sequence. For example:</p>
+                    <div class="sub-info">
+                        <div>
+                            <p>To loop through a list of items:</p>
+                            <pre><code>
+&lcub;% for item in items %&rcub;
+    &lt;p&gt;{{ item }}&lt;/p&gt;
+&lcub;% endfor %&rcub;
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <p><strong>3. Conditional Statements: </strong>The <code>if</code> template tag allows for conditional rendering based on context variables.</p>
+                    <div class="sub-info">
+                        <div>
+                            <p>For example, to display content based on a condition:</p>
+                            <pre><code>
+&lcub;% if user.is_authenticated %&rcub;
+    &lt;p&gt;Welcome, {{ user.username }}!&lt;/p&gt;
+&lcub;% else %&rcub;
+    &lt;p&gt;Please log in.&lt;/p&gt;
+&lcub;% endif %&rcub;
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p><strong>4. Context Variables: </strong>Context variables are passed from the view to the template to render dynamic content.</p>
+            <div class="sub-info">
+                <div>
+                    <p>For example, in a Django view:</p>
+                    <pre><code>
+# In views.py
+def my_view(request):
+    context = {'message': 'Hello!'}
+    return render(request, 'template.html', context)
+                    </code></pre>
+                </div>
+                <div>
+                    <p>And in the template:</p>
+                    <pre><code>
+&lcub;% extends 'base.html' %&rcub;
+&lcub;% block content %&rcub;
+    &lt;p&gt;{{ message }}&lt;/p&gt;
+&lcub;% endblock content %&rcub;
+                    </code></pre>
+                </div>
+            </div>
+            
+        </div>
+        
+        <hr>
+
+        <a class="learn-more" href="https://www.djangoproject.com/">Learn more about Django</a>
+    </div>
+{% endblock content %}

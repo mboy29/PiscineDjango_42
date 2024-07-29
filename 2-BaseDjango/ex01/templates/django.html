@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ex01: Django, framework web.{% endblock title %}
+
+{% block content %}
+    <div class="django">
+        <div class="header">
+            <h1>Django, framework web</h1>
+            <p>Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source.</p>
+            <p>Django was created in 2003 by Adrian Holovaty and Simon Willison while working at the Lawrence Journal-World newspaper. It was released publicly under a BSD license in July 2005. The framework is named after Django Reinhardt, a famous jazz guitarist.</p>
+        </div>
+
+        <hr>
+
+        <div class="info">
+            
+            <div>
+                <h3>Ridiculously fast.</h3>
+                <p>Django was designed to help developers take applications from concept to completion as quickly as possible.</p>
+            </div>
+            <div>
+                <h3>Reassuringly secure.</h3>
+                <p>Django takes security seriously and helps developers avoid many common security mistakes.</p>
+            </div>
+            <div>
+                <h3>Exceedingly scalable.</h3>
+                <p>Some of the busiest sites on the web leverage Django’s ability to quickly and flexibly scale.</p>
+            </div>
+        </div>
+
+        <hr>
+
+        <a class="learn-more" href="https://www.djangoproject.com/">Learn more about Django</a>
+    </div>
+{% endblock content %}
