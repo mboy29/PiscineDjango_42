@@ -20,8 +20,8 @@ VENV_PATH="venv"
 
 # Function to clean up static files
 clean() {
-    echo "${INFO}[INFO] Cleaning up static files...${NC}"
-    echo "-----------------------------------------"
+    echo "${INFO}[INFO] Cleaning up static files..."
+    echo "-----------------------------------${NC}"
     
     echo "${INFO}[INFO] Deleting collected static files...${NC}"
     rm -rf staticfiles/ */logs
@@ -32,8 +32,8 @@ clean() {
 
 # Function to run migrations, collect static files, and start the server
 run() {
-    echo "${INFO}[INFO] Running migrations, collecting static files, and starting the server...${NC}"
-    echo "---------------------------------------------------------"
+    echo "${INFO}[INFO] Running migrations, collecting static files and starting the server..."
+    echo "-----------------------------------------------------------------------------${NC}"
     
     # Apply database migrations
     echo "${INFO}[INFO] Applying database migrations...${NC}"

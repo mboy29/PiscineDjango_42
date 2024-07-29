@@ -11,7 +11,7 @@ from .sources import *
 # LOGGER
 # ------
 
-def view_form(request) -> HttpResponse:
+def view_index(request) -> HttpResponse:
 
     """
     Display the form and the history of inputs.
@@ -28,7 +28,7 @@ def view_form(request) -> HttpResponse:
         if form.is_valid():
             logger_update(form.cleaned_data['field_input'])
         return redirect('form')
-    return render(request, 'form.html', {
+    return render(request, 'ex02/index.html', {
         'form': FormInput(), 
         'history': logger_read()
     })

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'ex01/base.html' %}
 {% load static %}
 
 {% block title %}Ex01: Display process of a static page.{% endblock title %}
@@ -30,7 +30,7 @@
 from django.shortcuts import render
 
 def display_view(request):
-    return render(request, 'display.html')
+    return render(request, 'ex01/display.html')
                 </code></pre>
             </div>
             <div>

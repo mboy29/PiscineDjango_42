@@ -15,4 +15,4 @@ def view_index(request) -> HttpResponse:
         HttpResponse: the response object.
     """
 
-    return render(request, 'index.html', {})
+    return render(request, 'ex00/index.html', {})

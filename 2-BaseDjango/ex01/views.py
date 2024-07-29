@@ -15,7 +15,7 @@ def view_django(request) -> HttpResponse:
         HttpResponse: the response object.
     """
 
-    return render(request, 'django.html')
+    return render(request, 'ex01/django.html')
 
 def view_display(request) -> HttpResponse:
 
@@ -29,7 +29,7 @@ def view_display(request) -> HttpResponse:
         HttpResponse: the response object.
     """
 
-    return render(request, 'display.html')
+    return render(request, 'ex01/display.html')
 
 def view_templates(request) -> HttpResponse:
 
@@ -43,4 +43,4 @@ def view_templates(request) -> HttpResponse:
         HttpResponse: the response object.
     """
 
-    return render(request, 'templates.html')
+    return render(request, 'ex01/templates.html')
