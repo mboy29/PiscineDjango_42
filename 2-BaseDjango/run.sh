@@ -24,7 +24,7 @@ clean() {
     echo "-----------------------------------------"
     
     echo "${INFO}[INFO] Deleting collected static files...${NC}"
-    rm -rf staticfiles/ 
+    rm -rf staticfiles/ */logs
     echo "Static files deleted."
 
     echo "\n${SUCCESS}[SUCCESS] Clean up completed!${NC}"
