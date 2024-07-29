@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/ex01/style.css' %}">
+    {% block style %}
+        <link rel="stylesheet" href="{% static 'css/ex01/style1.css' %}">
+    {% endblock style %}
+</head>
+<body>
+    {% include 'ex01/nav.html' %}
+
+    <div class="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    
+</body>
+</html>
