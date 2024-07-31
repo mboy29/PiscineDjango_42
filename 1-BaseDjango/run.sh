@@ -24,7 +24,7 @@ clean() {
     echo "-----------------------------------${NC}"
     
     echo "${INFO}[INFO] Deleting collected static files...${NC}"
-    rm -rf staticfiles/ */logs
+    rm -rf staticfiles/ */logs db.sqlite3
     echo "Static files deleted."
 
     echo "\n${SUCCESS}[SUCCESS] Clean up completed!${NC}"

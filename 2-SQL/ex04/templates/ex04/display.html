@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies Display</title>
+    <link rel="stylesheet" href="{% static 'css/ex04/style.css' %}">
+</head>
+<body>
+    
+    <div class="header">
+        <h1>Movies List</h1>
+        <p>Welcome to the movie database. Here you can find a list of movies with their details.</p>
+    </div>
+
+    <hr>
+
+    {% if rows %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Episode Number</th>
+                    <th>Title</th>
+                    <th>Opening Crawl</th>
+                    <th>Director</th>
+                    <th>Producer</th>
+                    <th>Release Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                    <tr>
+                        <td>{{ row.0 }}</td>
+                        <td>{{ row.1 }}</td>
+                        <td>{{ row.2 }}</td>
+                        <td>{{ row.3 }}</td>
+                        <td>{{ row.4 }}</td>
+                        <td>{{ row.5 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elif message %}
+        <h3>{{ message }}</h3>
+    {% endif %}
+
+    <hr>
+    
+</body>
+</html>

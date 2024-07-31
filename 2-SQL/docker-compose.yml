@@ -1,0 +1,23 @@
+services:
+    d42_database:
+        image: postgres:latest
+        env_file: .env
+        container_name: ${DATABASE_CONTAINER}
+        environment:
+            POSTGRES_DB: ${DATABASE_DB}
+            POSTGRES_USER: ${DATABASE_USER}
+            POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+        ports:
+            - "${DATABASE_HOST_PORT}:${DATABASE_CONTAINER_PORT}"
+        volumes:
+            - ${DATABASE_VOLUME}:/var/lib/postgresql/data
+        networks:
+            - ${DATABASE_NETWORK}
+
+volumes:
+    d42_volume:
+        driver: local
+
+networks:
+    d42_network:
+        driver: bridge
