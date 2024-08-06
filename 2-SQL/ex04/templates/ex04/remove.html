@@ -4,24 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies Remove</title>
+    <title>Ex04 Movies Remove</title>
     <link rel="stylesheet" href="{% static 'css/ex04/style.css' %}">
 </head>
 <body>
     
     <div class="header">
-        <h1>Movies List</h1>
+        <h1>Ex04 Movies Remove</h1>
         <p>Please select a movie to delete from this drop down list and submit.</p>
     </div>
 
     <hr>
 
-    {% if success %}
-        <p>{{ success }}</p>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <p>{{ message }}</p>
+            {% elif message.tags == "info" %}
+                <h3>{{ message }}</h3>
+            {% endif %}
+        {% endfor %}
     {% endif %}
-    {% if message %}
-        <h3>{{ message }}</h3>
-    {% endif %}
+
     {% if form %}
         <form method="post">
             {% csrf_token %}

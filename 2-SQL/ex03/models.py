@@ -40,6 +40,7 @@ class Movies(models.Model):
 
     class Meta:
         db_table = 'ex03_movies'
+        verbose_name_plural = "Movies"
     
     @classmethod
     def fetchall(cls):
@@ -58,7 +59,7 @@ class Movies(models.Model):
             movies = cls.objects.all()
             return [(movie.episode_nb, movie.title, movie.opening_crawl, movie.director, movie.producer, movie.release_date) for movie in movies]
         except Exception as e:
-            raise Exception(f"An error occurred while retrieving movies: {e}")
+            raise Exception(e)
     
     @classmethod
     def insert(cls, episode_nb, title, director, producer, release_date, opening_crawl=None):
@@ -92,8 +93,6 @@ class Movies(models.Model):
                     producer=producer,
                     release_date=release_date
                 )
-            return f"OK: Inserted episode {episode_nb} - Title: '{title}'"
-        except IntegrityError as e:
-            return f"KO: Failed to insert episode {episode_nb} - Title: '{title}' - Error: {e}"
+            return f"Inserted episode {episode_nb} - Title: '{title}'"
         except Exception as e:
-            return f"KO: Failed to insert episode {episode_nb} - Title: '{title}' - Error: {e}"
+            raise Exception(e)

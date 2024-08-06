@@ -1,7 +1,8 @@
 
-from django.shortcuts import render
-from django.http import HttpResponse
 from django.conf import settings
+from django.contrib import messages
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 
 from .sources import *
 from .forms import *
@@ -9,7 +10,7 @@ from .forms import *
 def view_init(request) -> HttpResponse:
 
     """
-    Initialize the ex02_movies table in the PostgreSQL
+    Initialize the ex04_movies table in the PostgreSQL
     database.
 
     Args:
@@ -35,7 +36,7 @@ def view_init(request) -> HttpResponse:
 def view_populate(request) -> HttpResponse:
 
     """
-    Populate the ex02_movies table in the PostgreSQL
+    Populate the ex04_movies table in the PostgreSQL
     database with data.
 
     Args: 
@@ -84,26 +85,32 @@ def view_populate(request) -> HttpResponse:
 def view_display(request) -> HttpResponse:
 
     """
-    Display the contents of the ex02_movies table in the
+    Display the contents of the ex04_movies table in the
     PostgreSQL database.
 
     Args:
         request: The HTTP request object.
-    
+
     Returns:
         HttpResponse: The HTTP response object containing
             the result of the operation.
+
+    Raises:
+        Exception: If an error occurs during the database
+            query process
     """
 
     try:
         with DatabaseManager() as db_manager:
-            rows = db_manager.database_table_movies_get()
-            context = {'rows': rows} if rows else {'message': "No data available"}
-            return render(request, 'ex02/display.html', context)
+            movies = db_manager.database_table_movies_get()
+            if not movies:
+                raise Exception
+            return render(request, 'ex04/display.html', {"movies": movies})
     except Exception as exc:
-        return render(request, 'ex02/display.html', {'message': "No data available"})
+        messages.info(request, "No data available")
+        return render(request, 'ex04/display.html')
 
-def view_remove(request, *args, **kwargs) -> HttpResponse:
+def view_remove(request) -> HttpResponse:
 
     """
     Displays and processes a form to remove movies from the 
@@ -116,32 +123,27 @@ def view_remove(request, *args, **kwargs) -> HttpResponse:
 
     Args:
         request: The HTTP request object.
-        kwargs: A dictionary containing additional keyword arguments.
     
     Returns:
         HttpResponse: The HTTP response object containing
             the result of the operation.
     """
-
-    context = {}
-    if 'success' in kwargs:
-        context['success'] = kwargs['success']
     
     try:
         with DatabaseManager() as db_manager:
-            movies = db_manager.database_table_movies_get()
-            if not movies:
-                context['message'] = "No data available"
-                return render(request, 'ex04/remove.html', context)
+            if not db_manager.database_table_movies_get():
+                messages.info(request, "No data available")
+                return render(request, 'ex04/remove.html')
             if request.method == "POST":
                 form = FormMovieDelete(request.POST)
                 if form.is_valid():
                     title = form.cleaned_data['title']
                     db_manager.database_table_movie_delete(title)
-                    return view_remove(request, success=f"Movie '{title}' removed successfully.")
-            context['form'] = FormMovieDelete()
-            return render(request, 'ex04/remove.html', context)
+                    messages.success(request, f"OK Movie '{title}' removed successfully.")
+                    return redirect('ex04:remove')
+            return render(request, 'ex04/remove.html', {"form": FormMovieDelete()})
 
     except Exception as e:
-        context['message'] = "No data available"
-        return render(request, 'ex04/remove.html', context)
+        print("here", e)
+        messages.info(request, "No data available")
+        return render(request, 'ex04/remove.html')

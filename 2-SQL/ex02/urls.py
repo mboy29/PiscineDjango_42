@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from .views import *
 
+app_name = 'ex02'
+
 urlpatterns = [
     path('init/', view_init, name='init'),
     path('populate/', view_populate, name='populate'),

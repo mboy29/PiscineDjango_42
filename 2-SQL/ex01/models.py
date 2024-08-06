@@ -40,3 +40,4 @@ class Movies(models.Model):
 
     class Meta:
         db_table = 'ex01_movies'
+        verbose_name_plural = "Movies"

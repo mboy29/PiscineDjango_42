@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex10 Search</title>
+    <link rel="stylesheet" href="{% static 'css/ex10/style.css' %}">
+</head>
+<body>
+    
+    <div class="header">
+        <h1>Ex10 Seach</h1>
+        <p>Welcome to the planet and people database. Here you'll be able to search movies throught different criteria.</p>
+    </div>
+    
+    <hr>
+    
+    <h3>Search engine</h3>
+    <form method="get" action="">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if messages %}
+        <hr>
+        {% for message in messages %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+        <hr>
+    {% elif data %}
+    <hr>
+        <h3>Search results</h3>
+        <ul>
+            {% for d in data %}
+                <li>{{ d }}</li>
+            {% endfor %}
+        </ul>
+    <hr>
+    {% else %}
+    <hr>
+    {% endif %}
+
+</body>
+</html>

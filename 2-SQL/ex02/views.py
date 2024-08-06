@@ -1,7 +1,7 @@
-
+from django.conf import settings
+from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.conf import settings
 
 from .sources import *
 
@@ -100,8 +100,10 @@ def view_display(request) -> HttpResponse:
 
     try:
         with DatabaseManager() as db_manager:
-            rows = db_manager.database_table_movies_get()
-            context = {'rows': rows} if rows else {'message': "No data available"}
-            return render(request, 'ex02/display.html', context)
+            movies = db_manager.database_table_movies_get()
+            if not movies:
+                raise Exception
+            return render(request, 'ex02/display.html', {"movies": movies})
     except Exception as exc:
-        return render(request, 'ex02/display.html', {'message': "No data available"})
+        messages.info(request, "No data available")
+        return render(request, 'ex02/display.html')

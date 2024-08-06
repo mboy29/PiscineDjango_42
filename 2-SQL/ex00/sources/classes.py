@@ -150,4 +150,4 @@ class DatabaseManager:
             raise Exception("The table 'ex00_movies' already exists.")
         except psycopg2.Error as e:
             self.conn.rollback()
-            raise Exception(f"An error occurred: {e}")
+            raise Exception(e)

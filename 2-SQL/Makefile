@@ -35,6 +35,7 @@ django-run:
 	$(PYTHON_PATH) -B manage.py migrate
 	$(PYTHON_PATH) -B manage.py collectstatic --noinput
 	$(PYTHON_PATH) -B manage.py createadmin
+	$(PYTHON_PATH) -B manage.py loaddata ex10/data/ex10_initial_data.json 
 	$(PYTHON_PATH) -B manage.py runserver
 
 # DOCKER TASKS

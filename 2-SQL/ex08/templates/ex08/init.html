@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex08 Planets & People Init</title>
+    <link rel="stylesheet" href="{% static 'css/ex08/style.css' %}">
+</head>
+<body>
+    
+    <div class="header">
+        <h1>Ex08 Planets & People Init</h1>
+        <p>Welcome to the planets and people database. Here you'll initiate both tables in the database.</p>
+    </div>
+    <hr>
+    {% if messages %}
+        {% for message in messages %}
+            <h3>{{ message }}</h3>
+            {% if not forloop.last %}
+                <br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <hr>
+</body>

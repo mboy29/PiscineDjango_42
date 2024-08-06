@@ -145,7 +145,7 @@ class DatabaseManager:
             raise Exception(f"The table '{self.table_name}' already exists.")
         except psycopg2.Error as e:
             self.conn.rollback()
-            raise Exception(f"An error occurred: {e}")
+            raise Exception(e)
 
     def database_table_movies_insert(self, episode_nb, title, director, producer, release_date, opening_crawl=None):
         
@@ -176,7 +176,7 @@ class DatabaseManager:
             self.conn.commit()
         except psycopg2.Error as e:
             self.conn.rollback()
-            raise Exception(f"An error occurred: {e}")
+            raise Exception(e)
 
     def database_table_movie_delete(self, title):
         
@@ -201,7 +201,7 @@ class DatabaseManager:
             self.conn.commit()
         except psycopg2.Error as e:
             self.conn.rollback()
-            raise Exception(f"An error occurred: {e}")
+            raise Exception(e)
 
 
     def database_table_movies_get(self):
@@ -224,4 +224,4 @@ class DatabaseManager:
             rows = self.cursor.fetchall()
             return rows
         except psycopg2.Error as e:
-            raise Exception(f"An error occurred: {e}")
+            raise Exception(e)

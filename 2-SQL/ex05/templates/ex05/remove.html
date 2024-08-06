@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex05 Movies Remove</title>
+    <link rel="stylesheet" href="{% static 'css/ex05/style.css' %}">
+</head>
+<body>
+    
+    <div class="header">
+        <h1>Ex05 Movies Remove</h1>
+        <p>Please select a movie to delete from this drop down list and submit.</p>
+    </div>
+
+    <hr>
+    
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == "success" %}
+                <p>{{ message }}</p>
+            {% elif message.tags == "info" %}
+                <h3>{{ message }}</h3>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if form %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Remove</button>
+        </form>
+    {% endif %}
+
+    <hr>
+    
+</body>
+</html>

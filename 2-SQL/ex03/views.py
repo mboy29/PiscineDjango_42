@@ -1,5 +1,6 @@
 
 from django.conf import settings
+from django.contrib import messages
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.db import IntegrityError, transaction
@@ -36,8 +37,13 @@ def view_populate(request) -> HttpResponse:
 
     results = []
     for record in data:
-        result = Movies.insert(*record)
-        results.append(result)
+        try:
+            result = Movies.insert(*record)
+            results.append(f"OK {result}")
+        except IntegrityError as exc:
+            results.append(f"KO {exc}")
+        except Exception as e:
+            results.append(f"KO {e}")
     response = "<br>".join(results)
     return HttpResponse(response)
 
@@ -45,7 +51,7 @@ def view_populate(request) -> HttpResponse:
 def view_display(request) -> HttpResponse:
 
     """
-    Display the contents of the ex02_movies table in the
+    Display the contents of the ex03_movies table in the
     PostgreSQL database.
 
     Args:
@@ -58,7 +64,9 @@ def view_display(request) -> HttpResponse:
 
     try:
         movies = Movies.fetchall()
-        context = {'rows': movies} if movies else {'message': "No data available"}
-        return render(request, 'ex03/display.html', context)
+        if not movies:
+            raise Exception
+        return render(request, 'ex03/display.html', {"movies": movies})
     except Exception as exc:
-        return render(request, 'ex03/display.html', {'message': "No data available"})
+        messages.info(request, "No data available")
+        return render(request, 'ex03/display.html')

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex09 Planets & People Populate</title>
+    <link rel="stylesheet" href="{% static 'css/ex09/style.css' %}">
+</head>
+<body>
+    
+    <div class="header">
+        <h1>Ex09 Planets & People Populate</h1>
+        <p>Welcome to the planets and people database. Here you'll populating both tables in the database based on provided csv.</p>
+    </div>
+    <hr>
+    {% if messages %}
+        {% for message in messages %}
+            <h3>{{ message }}</h3>
+            {% if not forloop.last %}
+                <br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <hr>
+</body>

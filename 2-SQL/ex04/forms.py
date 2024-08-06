@@ -11,7 +11,7 @@ class FormMovieDelete(forms.Form):
     
     Methods:
         __init__: Initializes the form and populates the choices for the title field.
-        form_movies_delete_get: Retrieve movie titles from the database to populate the dropdown choices.
+        fetchall: Retrieve movie titles from the database to populate the dropdown choices.
     """
 
     title = forms.ChoiceField(label="Select Movie to Remove")
@@ -30,9 +30,9 @@ class FormMovieDelete(forms.Form):
         """
         
         super(FormMovieDelete, self).__init__(*args, **kwargs)
-        self.fields['title'].choices = self.form_movies_delete_get()
+        self.fields['title'].choices = self.fetchall()
 
-    def form_movies_delete_get(self):
+    def fetchall(self):
         
         """
         Retrieve movie titles from the database to populate the dropdown choices.
