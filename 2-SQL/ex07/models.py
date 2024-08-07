@@ -123,30 +123,6 @@ class Movies(models.Model):
         except Exception as e:
             raise Exception(e)
             
-
-    @classmethod
-    def remove(cls, title):
-        
-        """
-        Removes a movie from the database by its title.
-
-        Args:
-            title (str): The title of the movie to be removed.
-
-        Returns:
-            str: A message indicating the success or failure of the operation.
-
-        Raises:
-            Exception: If an error occurs during deletion.
-        """
-        
-        try:
-            movie = cls.objects.get(title=title)
-            movie.delete()
-            return f"Movie '{title}' removed successfully."
-        except Exception as e:
-            raise Exception(e)
-    
     @classmethod
     def update(cls, title, new_opening_crawl):
         """

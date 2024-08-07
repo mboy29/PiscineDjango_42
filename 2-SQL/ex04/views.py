@@ -144,6 +144,5 @@ def view_remove(request) -> HttpResponse:
             return render(request, 'ex04/remove.html', {"form": FormMovieDelete()})
 
     except Exception as e:
-        print("here", e)
         messages.info(request, "No data available")
         return render(request, 'ex04/remove.html')

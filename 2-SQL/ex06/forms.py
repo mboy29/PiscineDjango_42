@@ -97,10 +97,16 @@ class FormMovieUpdate(forms.Form):
         Returns:
             list: A list of tuples where each tuple contains (value, display) for the dropdown options.
                   Returns an empty list if no movies are found.
+        
+        Raises:
+            Exception: If an error occurs during the database query process.
         """
         
-        with DatabaseManager() as db_manager:
-            movies = db_manager.database_table_movies_get()
-            if not movies:
-                return []
-            return [(movie[1], movie[1]) for movie in movies]
+        try:
+            with DatabaseManager() as db_manager:
+                movies = db_manager.database_table_movies_get()
+                if not movies:
+                    return []
+                return [(movie[1], movie[1]) for movie in movies]
+        except Exception as e:
+            raise Exception(e)

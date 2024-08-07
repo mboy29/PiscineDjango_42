@@ -110,43 +110,6 @@ def view_display(request) -> HttpResponse:
         messages.info(request, "No data available")
         return render(request, 'ex06/display.html')
 
-def view_remove(request) -> HttpResponse:
-
-    """
-    Displays and processes a form to remove movies from the 
-    ex06_movies table. This view displays a form for removing a 
-    movie if movies are available.
-    
-    If the form is submitted and valid, it removes the selected movie 
-    and displays a success message. If no movies are available or an 
-    error occurs, it displays an appropriate message.
-
-    Args:
-        request: The HTTP request object.
-    
-    Returns:
-        HttpResponse: The HTTP response object containing
-            the result of the operation.
-    """
-    
-    try:
-        with DatabaseManager() as db_manager:
-            if not db_manager.database_table_movies_get():
-                messages.info(request, "No data available")
-                return render(request, 'ex06/remove.html')
-            if request.method == "POST":
-                form = FormMovieDelete(request.POST)
-                if form.is_valid():
-                    title = form.cleaned_data['title']
-                    db_manager.database_table_movie_delete(title)
-                    messages.success(request, f"OK Movie '{title}' removed successfully.")
-                    return redirect('ex06:remove')
-            return render(request, 'ex06/remove.html', {"form": FormMovieDelete()})
-
-    except Exception as e:
-        messages.info(request, "No data available")
-        return render(request, 'ex06/remove.html')
-
 def view_update(request) -> HttpResponse:
 
     """
@@ -179,8 +142,8 @@ def view_update(request) -> HttpResponse:
                     db_manager.database_table_movies_update(title, opening_crawl)
                     messages.success(request, f"OK Movie '{title}' updated successfully.")
                     return redirect('ex06:update')
-        return render(request, 'ex06/update.html', {"form": FormMovieUpdate()})
+            return render(request, 'ex06/update.html', {"form": FormMovieUpdate()})
 
     except Exception as e:
-        messages.error(request, f"KO {str(e)}")
-        return redirect('update')
+        messages.info(request, "No data available")
+        return render(request, 'ex06/update.html')

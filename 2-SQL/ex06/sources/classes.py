@@ -239,32 +239,6 @@ class DatabaseManager:
             self.conn.rollback()
             raise Exception(e)
 
-    def database_table_movie_delete(self, title):
-        
-        """
-        Remove a record from the table by title.
-
-        Args:
-            title (str): The title of the movie to remove.
-
-        Returns: None
-
-        Raises:
-            Exception: If an error occurs during the removal process.
-        """
-        
-        delete_query = sql.SQL("DELETE FROM {} WHERE title = %s").format(sql.Identifier(self.table_name))
-
-        try:
-            self.cursor.execute(delete_query, (title,))
-            if self.cursor.rowcount == 0:
-                raise Exception(f"Movie with title '{title}' not found.")
-            self.conn.commit()
-        except psycopg2.Error as e:
-            self.conn.rollback()
-            raise Exception(e)
-
-
     def database_table_movies_get(self):
         
         """

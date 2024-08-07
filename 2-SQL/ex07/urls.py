@@ -22,6 +22,5 @@ app_name = 'ex07'
 urlpatterns = [
     path('populate/', view_populate, name='populate'),
     path('display/', view_display, name='display'),
-    path('remove/', view_remove, name='remove'),
     path('update/', view_update, name='update'),
 ]

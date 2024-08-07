@@ -71,45 +71,12 @@ def view_display(request) -> HttpResponse:
         messages.info(request, "No data available")
         return render(request, 'ex07/display.html')
 
-
-def view_remove(request) -> HttpResponse:
-
-    """
-    Remove a movie from the ex07_movies table in the
-    PostgreSQL database.
-
-    Args:
-        request: The HTTP request object.
-    
-    Returns:
-        HttpResponse: The HTTP response object containing
-            the result of the operation.
-    """
-
-    try:
-        if not Movies.fetchall():
-            messages.info(request, "No data available")
-            return render(request, 'ex07/remove.html')
-
-        if request.method == "POST":
-            form = FormMovieDelete(request.POST)
-            if form.is_valid():
-                title = form.cleaned_data['title']
-                Movies.remove(title)
-                messages.success(request, f"OK Movie '{title}' removed successfully.")
-                return redirect('ex07:remove')
-        return render(request, 'ex07/remove.html', {'form': FormMovieDelete()})
-
-    except Exception as e:
-        messages.info(request, "No data available")
-        return render(request, 'ex07/remove.html')
-
 def view_update(request) -> HttpResponse:
 
     try:
         if not Movies.fetchall():
             messages.info(request, "No data available")
-            return render(request, 'ex07/remove.html')
+            return render(request, 'ex07/update.html')
         if request.method == "POST":
             form = FormMovieUpdate(request.POST)
             if form.is_valid():
@@ -120,5 +87,5 @@ def view_update(request) -> HttpResponse:
                 return redirect('ex07:update')
         return render(request, 'ex07/update.html', {"form": FormMovieUpdate()})
     except Exception as e:
-        messages.error(request, f"KO {str(e)}")
-        return render(request, 'ex07/remove.html')
+        messages.info(request, "No data available")
+        return render(request, 'ex07/update.html')

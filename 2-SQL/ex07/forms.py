@@ -107,4 +107,4 @@ class FormMovieUpdate(forms.Form):
                 return []
             return [(movie[1], movie[1]) for movie in movies]
         except Exception as e:
-            return []
+            raise Exception(e)
