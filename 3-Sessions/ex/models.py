@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
+# Create your models here.
+
 class CustomUserManager(BaseUserManager):
 
     """
@@ -70,6 +72,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         objects (CustomUserManager): The custom user manager object.
         is_tip_admin_remover (bool): The tip admin remover status.
         is_tip_admin_downvoter (bool): The tip admin downvoter status.
+        reputation (int): The reputation of the user.
     
     Methods:
         __str__(): Return the string representation of the user.
