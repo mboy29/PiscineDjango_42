@@ -50,13 +50,14 @@ class MiddlewareRedirectUser:
         unauthenticated_restricted_patterns = [
             reverse('app:publications'),
             reverse('app:favourites'),
-            reverse('app:logout'),
             reverse('app:publish'),
-            '/favourites/',
+            reverse('app:logout'),
+            '/details/',
         ]
-        if request.user.is_authenticated and request.path in authenticated_restricted_paths:
-            return redirect('app:home')
-        elif not request.user.is_authenticated:
+        if request.user.is_authenticated:
+            if request.path in authenticated_restricted_paths:
+                return redirect('app:home')
+        if not request.user.is_authenticated:
             for pattern in unauthenticated_restricted_patterns:
                 if request.path.startswith(pattern):
                     return redirect('app:home')

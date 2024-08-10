@@ -1,8 +1,7 @@
 from typing import Any, Dict
+from django.contrib import messages
 from django.urls import reverse_lazy
-from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
-from django.views.generic.base import RedirectView
+from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 
@@ -30,6 +29,7 @@ class ViewFavourites(ListView):
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         
+        
         """
         Creates the context for the template.
 
@@ -40,39 +40,46 @@ class ViewFavourites(ListView):
             Dict[str, Any]: Context for the template.
         """
 
-        context = super().get_context_data(**kwargs)
-        context['favourites'] = UserFavouriteArticle.fetch(self.request.user)
-        return context
+        try:
+            context = super().get_context_data(**kwargs)
+            context['favourites'] = UserFavouriteArticle.fetch(self.request.user)
+            return context
+        except Exception as e:
+            raise Exception(f"Error fetching favourites: {e}")
 
-class AddToFavouritesView(LoginRequiredMixin, RedirectView):
-
-    """
-    Add to favourites view. Adds an article to the user's favourites.
-
-    attributes:
-        pattern_name (str): URL pattern name.
-        permanent (bool): Permanent redirect flag.
+class AddToFavouritesView(LoginRequiredMixin, View):
     
-    Methods:
-        get_redirect_url: Redirects to the favourites page.
     """
-    permanent = False
+    View to add an article to favourites.
 
-    def get_redirect_url(self, *args, **kwargs):
+    Attributes:
+        form_class (FormFavourites): The form class to use.
+
+    Methods:
+        post: Handles POST requests to add an article to favourites.
+    """
+
+    def post(self, request, *args, **kwargs):
 
         """
-        Redirects to the favourites page.
+        Handles POST requests to add an article to favourites.
 
         Args:
-            *args: Arbitrary positional arguments.
-            **kwargs: Arbitrary keyword arguments.
+            request (HttpRequest): The request object.
+            *args: Variable length argument list.
+            **kwargs: Arbitrary keyword arguments.      
         
         Returns:
-            str: URL to redirect to.
+            HttpResponseRedirect: Redirects to the article details page.
         """
 
         article = get_object_or_404(Article, pk=kwargs['pk'])
         
-        if not UserFavouriteArticle.exists(self.request.user, article):
-            UserFavouriteArticle.create(user=self.request.user, article=article)
-        return reverse_lazy('app:favourites')
+        form = FormFavourites(request.POST, user=request.user, article=article)
+        if form.is_valid():
+            UserFavouriteArticle.create(user=request.user, article=article)
+            messages.success(request, 'Article added to favourites!')
+            return redirect(reverse_lazy('app:favourites'))
+        for error in form.non_field_errors():
+            messages.error(request, error)
+        return redirect(reverse_lazy('app:details', kwargs={'pk': article.pk}))

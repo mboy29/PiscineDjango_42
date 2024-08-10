@@ -1,4 +1,5 @@
 from typing import Any, Dict
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.views.generic.edit import FormView
@@ -70,7 +71,7 @@ class ViewLogin(FormView):
 class ViewLoginNav(FormView):
 
     """
-    Login page view. Displays the login form in the nav bar.
+    Login page view. Displays the login form in the nav bar
 
     Attributes:
         template_name (str): Template file to render.
@@ -121,13 +122,8 @@ class ViewLoginNav(FormView):
             HttpResponse: Render the form with errors.
         """
         
-        # Get the referer URL
         referer_url = self.request.META.get('HTTP_REFERER', '/')
-        
-        # Add errors to the form and redirect back
         for field, errors in form.errors.items():
             for error in errors:
                 messages.error(self.request, error)
-
-        # Redirect to the referer URL
         return redirect(referer_url)

@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 # Create your models here.
@@ -21,7 +21,7 @@ class UserManager(BaseUserManager):
     def create_user(self, username, password=None, **extra_fields):
 
         """
-        Create and return a new user with an email and password.
+        Create and return a new user with a username and password.
 
         Args:
             username (str): The username.
@@ -33,7 +33,7 @@ class UserManager(BaseUserManager):
         """
 
         if not username:
-            raise ValueError('The Username field must be set')
+            raise ValueError(_('The Username field must be set'))
         user = self.model(username=username, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -42,7 +42,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self, username, password=None, **extra_fields):
             
         """
-        Create and return a new superuser with an email and password.
+        Create and return a new superuser with a username and password.
 
         Args:
             username (str): The username.
@@ -75,18 +75,18 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     Methods:
         __str__(): Return the string representation of the user.
-        user_create(username, password, **extra_fields): Create and return a new user.
+        create(username, password, **extra_fields): Create and return a new user.
         exists(username): Check if the user exists.
         fetch(username): Get the user object.
         fetchall(): Fetch all users.
     """
     
-    username = models.CharField(max_length=150, unique=True)
-    email = models.EmailField(blank=True, null=True)
-    password = models.CharField(max_length=128)
-    created_at = models.DateTimeField(default=timezone.now)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
+    username = models.CharField(max_length=150, unique=True, verbose_name=_('Username'))
+    email = models.EmailField(blank=True, null=True, verbose_name=_('Email'))
+    password = models.CharField(max_length=128, verbose_name=_('Password'))
+    created_at = models.DateTimeField(default=timezone.now, verbose_name=_('Created At'))
+    is_active = models.BooleanField(default=True, verbose_name=_('Is Active'))
+    is_staff = models.BooleanField(default=False, verbose_name=_('Is Staff'))
 
     objects = UserManager()
 
@@ -95,7 +95,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
     class Meta:
         db_table = 'quickreads_user'
-        verbose_name_plural = "Users"
+        verbose_name_plural = _("Users")
     
     def __str__(self):
 
@@ -113,7 +113,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @classmethod
     def create(cls, username, password=None, **extra_fields):
         """
-        Class method to create and return a new user with hashed password.
+        Class method to create and return a new user with a hashed password.
 
         Args:
             username (str): The username.
@@ -124,7 +124,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             User: The new user object.
         """
         if not username:
-            raise ValueError('The Username field must be set')
+            raise ValueError(_('The Username field must be set'))
         user = cls(username=username, **extra_fields)
         user.set_password(password)
         user.save()

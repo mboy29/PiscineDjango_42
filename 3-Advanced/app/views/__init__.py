@@ -9,3 +9,5 @@ from .publications import *
 from .details import *
 from .favourites import *
 from .publish import *
+
+from .translate import *

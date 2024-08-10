@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from .user import *
 
@@ -24,15 +25,15 @@ class Article(models.Model):
         fetchall(): Fetch all articles.
     """
 
-    title = models.CharField(max_length=64, null=False, blank=False, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
-    created = models.DateTimeField(auto_now_add=True, null=False, blank=False)
-    synopsis = models.CharField(max_length=312, null=False, blank=False)
-    content = models.TextField(null=False, blank=False)
+    title = models.CharField(max_length=64, null=False, blank=False, unique=True, verbose_name=_('Title'))
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False, verbose_name=_('Author'))
+    created = models.DateTimeField(auto_now_add=True, null=False, blank=False, verbose_name=_('Created'))
+    synopsis = models.CharField(max_length=312, null=False, blank=False, verbose_name=_('Synopsis'))
+    content = models.TextField(null=False, blank=False, verbose_name=_('Content'))
 
     class Meta:
         db_table = 'quickreads_article'
-        verbose_name_plural = "Articles"
+        verbose_name_plural = _("Articles")
     
     def __str__(self):
     
@@ -64,7 +65,7 @@ class Article(models.Model):
         # Ensure the 'author' field in data corresponds to an existing User
         author = data.get('author')
         if not User.exists(author.username):
-            raise ValueError('The specified author does not exist')
+            raise ValueError(_('The specified author does not exist'))
         
         return cls.objects.create(**data)
     
@@ -125,7 +126,7 @@ class Article(models.Model):
             list: The list of articles
         """
 
-        return cls.objects.get(author=user).order_by('-created')
+        return cls.objects.filter(author=user).order_by('-created')
 
     @classmethod
     def fetchall(cls):

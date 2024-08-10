@@ -21,4 +21,5 @@ class ViewHome(RedirectView):
         Returns:
             str: URL to redirect to.
         """
+    
         return reverse_lazy('app:articles')

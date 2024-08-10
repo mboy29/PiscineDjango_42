@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Quick Reads - Publications{% endblock title %}
+{% block title %} 
+    {% trans "Quick Reads - Publications" %}
+{% endblock title %}
 
 {% block style %}
     <link rel="stylesheet" href="{% static 'css/articles.css' %}" />
@@ -10,16 +13,16 @@
 {% block content %}
 <div class="table-responsive">
     <button class="btn btn-secondary btn-block" onclick="location.href='{% url 'app:publish' %}'">
-        Publish
+        {% trans "Publish" %}
     </button>
     <br>
     {% if publications %}
         <table class="table articles-custom">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Synopsis</th>
-                    <th>Created</th>
+                    <th>{% trans "Title" %}</th>
+                    <th>{% trans "Synopsis" %}</th>
+                    <th>{% trans "Created" %}</th>
                     <th></th>
                 </tr>
             </thead>
@@ -30,7 +33,9 @@
                         <td>{{ publication.synopsis|truncatechars:20 }}</td>
                         <td>{{ publication.created }}</td>
                         <td>
-                            <a href="{% url 'app:details' publication.pk %}?referrer=publications" class="btn btn-info">Read</a>
+                            <a href="{% url 'app:details' publication.pk %}?referrer=publications" class="btn btn-info">
+                                {% trans "Read" %}
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -38,7 +43,7 @@
         </table>
     {% else %}
         <div class="alert alert-info" role="alert">
-            No publications posted yet!
+            {% trans "No publications posted yet!" %}
         </div>
     {% endif %}
 </div>

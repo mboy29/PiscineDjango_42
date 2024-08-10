@@ -18,6 +18,7 @@ DOCKER = docker
 PYTHON_PATH = python3
 STATICFILES_DIR = staticfiles/
 DB_FILE = db.sqlite3
+LANGUAGE_CODE = en
 
 # DJANGO TASKS
 # ------------
@@ -34,9 +35,16 @@ django-run:
 	$(PYTHON_PATH) -B manage.py makemigrations
 	$(PYTHON_PATH) -B manage.py migrate
 	$(PYTHON_PATH) -B manage.py collectstatic --noinput
+	$(PYTHON_PATH) -B manage.py makemessages -l $(LANGUAGE_CODE)
+	$(PYTHON_PATH) -B manage.py compilemessages
 	$(PYTHON_PATH) -B manage.py createadmin
 	$(PYTHON_PATH) -B manage.py populate
 	$(PYTHON_PATH) -B manage.py runserver
+
+django-test: docker-run
+	@echo "$(INFO)[INFO] Running Django tests..."
+	@echo "----------------------------------$(NC)"
+	$(PYTHON_PATH) -B manage.py test
 
 # DOCKER TASKS
 # ------------

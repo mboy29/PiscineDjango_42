@@ -1,12 +1,13 @@
 from django import forms
+from django.utils.translation import gettext as _
 from app.models import *
 
 class FormLogin(forms.Form):
-
+    
     """
     Form class to login a user.
 
-    Feilds:
+    Fields:
         username (str): The username.
         password (str): The password.
     
@@ -17,16 +18,49 @@ class FormLogin(forms.Form):
     username = forms.CharField(
         max_length=150, 
         required=True, 
-        widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control'})
+        widget=forms.TextInput(attrs={'placeholder': _('Username'), 'class': 'form-control'})
     )
     password = forms.CharField(
         max_length=128, 
         required=True, 
-        widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'placeholder': _('Password'), 'class': 'form-control'})
     )
 
-    def clean(self):
+    class Meta:
+        
+        """
+        The model meta class for the FormLogin class.
 
+        Attributes:
+            model (User): The model to use.
+            fields (list): The fields to include in the form.
+            widgets (dict): The widgets to use for the fields.
+            labels (dict): The labels for the fields.
+            help_texts (dict): The help texts for the fields
+        """
+
+        model = User
+        fields = ['username', 'password']
+        widgets = {
+            'password': forms.PasswordInput(),
+        }
+        labels = {
+            'username': _('Username'),
+            'password': _('Password'),
+        }
+        error_messages = {
+            'username': {
+                'max_length': _('Username is too long.'),
+                'required': _('Username is required.'),
+            },
+            'password': {
+                'max_length': _('Password is too long.'),
+                'required': _('Password is required.'),
+            },
+        }
+
+    def clean(self):
+        
         """
         Validates the form fields, by checking if the username exists
         and if the password is correct.
@@ -42,9 +76,9 @@ class FormLogin(forms.Form):
         password = cleaned_data.get('password')
 
         if not User.exists(username):
-            self.add_error("username", 'Username does not exist.')
+            self.add_error("username", _('Username does not exist.'))
         else:
             user = User.fetch(username)
             if not user.check_password(password):
-                self.add_error("password", 'Incorrect password.')
+                self.add_error("password", _('Incorrect password.'))
         return cleaned_data

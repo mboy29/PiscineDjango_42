@@ -12,10 +12,12 @@
     <p>{{ article.content }}</p>
     
     {% if user.is_authenticated %}
-        <form action="{% url 'app:favourites_add' article.pk %}" method="post" class="form-inline text-center">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-secondary btn-block">Add to Favourites</button>
-        </form>
+        {% if request.GET.referrer != 'favourites' %}
+            <form action="{% url 'app:favourites_add' article.pk %}" method="post" class="form-inline text-center">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-secondary btn-block">Add to Favourites</button>
+            </form>
+        {% endif %}
         <div class="form-group text-center">
             {% if request.GET.referrer == 'favourites' %}
                 <a href="{% url 'app:favourites' %}" class="btn btn-secondary mt-3">Back to Favourites</a>

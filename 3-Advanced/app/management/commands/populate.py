@@ -1,5 +1,6 @@
 from django.utils.timezone import now
 from django.core.management.base import BaseCommand
+from django.utils.translation import gettext_lazy as _
 
 from app.models import *
 
@@ -13,7 +14,7 @@ class Command(BaseCommand):
         handle: Entry point of the command. Creates users and articles.
     """
 
-    help = 'Create initial users and articles for the application.'
+    help = _('Create initial users and articles for the application.')
 
     def populate_users(self):
 
@@ -51,11 +52,11 @@ class Command(BaseCommand):
         """
 
         articles_data = [
-            {'title': 'Article 1', 'author': users[0], 'synopsis': 'Synopsis of article 1 - other 20 characters to demonstrate what ex03 demands.', 'content': 'Content of article 1'},
-            {'title': 'Article 2', 'author': users[0], 'synopsis': 'Synopsis article 2', 'content': 'Content article 2'},
-            {'title': 'Article 3', 'author': users[1], 'synopsis': 'Synopsis article 3', 'content': 'Content article 3'},
-            {'title': 'Article 4', 'author': users[1], 'synopsis': 'Synopsis article 4', 'content': 'Content article 4'},
-            {'title': 'Article 5', 'author': users[2], 'synopsis': 'Synopsis article 5', 'content': 'Content article 5'}
+            {'title': _('Article 1'), 'author': users[0], 'synopsis': _('Synopsis of article 1 - other 20 characters to demonstrate what ex03 demands.'), 'content': _('Content of article 1')},
+            {'title': _('Article 2'), 'author': users[0], 'synopsis': _('Synopsis article 2'), 'content': _('Content article 2')},
+            {'title': _('Article 3'), 'author': users[1], 'synopsis': _('Synopsis article 3'), 'content': _('Content article 3')},
+            {'title': _('Article 4'), 'author': users[1], 'synopsis': _('Synopsis article 4'), 'content': _('Content article 4')},
+            {'title': _('Article 5'), 'author': users[2], 'synopsis': _('Synopsis article 5'), 'content': _('Content article 5')}
         ]
         articles = []
         for article_data in articles_data:
@@ -87,7 +88,8 @@ class Command(BaseCommand):
             {'user': users[2], 'article': articles[4]}
         ]
         for favourite_data in favourites_data:
-            UserFavouriteArticle.create(user=favourite_data['user'], article=favourite_data['article'])
+            if not UserFavouriteArticle.exists(favourite_data['user'], favourite_data['article']):
+                UserFavouriteArticle.create(user=favourite_data['user'], article=favourite_data['article'])
 
     def handle(self, *args, **options):
         
@@ -106,7 +108,6 @@ class Command(BaseCommand):
             users = self.populate_users()
             articles = self.populate_articles(users)
             self.populate_favourites(users, articles)
-            self.stdout.write(self.style.SUCCESS('Data population complete.'))
+            self.stdout.write(self.style.SUCCESS(_('Data population complete.')))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'An error occurred: {e}'))
-       
+            self.stdout.write(self.style.ERROR(_('An error occurred: %s') % e))
