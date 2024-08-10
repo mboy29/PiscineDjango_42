@@ -1,0 +1,39 @@
+{% load static %}
+{% load bootstrap3 %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Quick Reads - Base{% endblock title %}</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {% bootstrap_css %} {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    {% block style %}
+    {% endblock style %}
+</head>
+<body>
+    <div class="base-container container">
+        <br>
+
+        <div class="base-header">
+            <h1>Articles</h1>
+            <h3>Share your writings</h3>
+        </div>
+        
+        <hr>
+
+        {% include 'nav.html' %}
+      
+        <div class="content d-flex justify-content-center align-items-center">
+            {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+            {% block content %}
+            {% endblock content %}
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Quick Reads - Details {{ article.title }}{% endblock title %}
+
+{% block content %}
+<h1 class="text-center mb-4">{{ article.title }}</h1>
+<div class="bg-light p-4 border rounded shadow-sm">
+    <p><strong>Author:</strong> {{ article.author }}</p>
+    <p><strong>Created:</strong> {{ article.created }}</p>
+    <p><strong>Content:</strong></p>
+    <p>{{ article.content }}</p>
+    
+    {% if user.is_authenticated %}
+        <form action="{% url 'app:favourites_add' article.pk %}" method="post" class="form-inline text-center">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary btn-block">Add to Favourites</button>
+        </form>
+        <div class="form-group text-center">
+            {% if request.GET.referrer == 'favourites' %}
+                <a href="{% url 'app:favourites' %}" class="btn btn-secondary mt-3">Back to Favourites</a>
+            {% elif request.GET.referrer == 'publications' %}
+                <a href="{% url 'app:publications' %}" class="btn btn-secondary mt-3">Back to Publications</a>
+            {% else %}
+                <a href="{% url 'app:articles' %}" class="btn btn-secondary mt-3">Back to Articles</a>
+            {% endif %}
+        </div>
+        <br>
+    {% else %}
+    <div class="form-group text-center">
+        <a href="{% url 'app:articles' %}" class="btn btn-secondary mt-3 text-center">Back to Articles</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

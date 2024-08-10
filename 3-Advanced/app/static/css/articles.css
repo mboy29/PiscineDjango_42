@@ -1,0 +1,39 @@
+.articles-custom {
+    background-color: transparent;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.articles-custom th, .articles-custom td {
+    border: none;
+    padding: 8px;
+}
+
+.articles-custom tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.articles-custom tbody tr:last-child {
+    border-bottom: 2px solid #333;
+}
+
+.articles-custom th, 
+.articles-custom td:nth-child(1),
+.articles-custom td:nth-child(2),
+.articles-custom td:nth-child(3),
+.articles-custom td:nth-child(4),
+.articles-custom td:nth-child(5) {
+    text-align: left;
+}
+
+.articles-custom th:nth-child(1) {
+    width: 10%;
+}
+
+.articles-custom td:nth-child(2) {
+    width: 60%;
+}
+
+.articles-custom td:nth-child(n+6) {
+    width: calc(30% / 4); /* Distributes remaining width equally among the last columns */
+}

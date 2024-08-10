@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Quick Reads - Favourites{% endblock title %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/articles.css' %}" />
+{% endblock style %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center mb-4">Your Favourite Articles</h1>
+    {% if favourites %}
+        <div class="favourites-list">
+            {% for article in favourites %}
+                <div class="favourites-item">
+                    <a href="{% url 'app:details' article.pk %}?referrer=favourites" class="article-link">
+                        <h5 class="mb-1">{{ article.title }}</h5>
+                    </a>
+                </div>
+                {% if not forloop.last %}
+                    <hr />
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No favorite articles yet!
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
