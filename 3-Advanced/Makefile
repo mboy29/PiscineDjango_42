@@ -106,6 +106,7 @@ help:
 	@echo "$(INFO)  make django-clean       - Cleans Django static files and database.$(NC)"
 	@echo "$(INFO)  make django-run         - Runs Django migrations, collects static files, and starts the server.$(NC)"
 	@echo "$(INFO)  make django-logs        - Displays Django server logs.$(NC)"
+	@echo "$(INFO)  make django-test        - Runs Django tests.$(NC)"
 
 .DEFAULT_GOAL := run
 
