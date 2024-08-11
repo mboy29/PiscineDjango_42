@@ -3,9 +3,32 @@ from django.conf import settings
 from app.models import User
 
 class Command(BaseCommand):
+        
+    """
+    Command class to create a default admin user if it does not exist.
+
+    Attributes:
+        help (str): The help message for the command.
+
+    Methods:
+        handle(*args, **kwargs): Executes the command.
+    """
+    
+    
     help = 'Create a default admin user if it does not exist.'
 
     def handle(self, *args, **kwargs):
+
+        """
+        Executes the command.
+
+        Args:
+            *args: The arguments.
+            **kwargs: The keyword arguments.
+        
+        Returns: None
+        """
+
         admin_username = settings.ADMIN_USERNAME
         admin_password = settings.ADMIN_PASSWORD
         admin_email = settings.ADMIN_EMAIL
