@@ -33,12 +33,11 @@ django-run:
 	@echo "------------------------------------$(NC)"
 	$(PYTHON_PATH) -B manage.py makemigrations
 	$(PYTHON_PATH) -B manage.py migrate
+	$(PYTHON_PATH) -B manage.py collectstatic --noinput
+	$(PYTHON_PATH) -B manage.py createadmin
+	$(PYTHON_PATH) -B manage.py accountpopulate
+	$(PYTHON_PATH) -B manage.py chatpopulate
 	$(PYTHON_PATH) -B manage.py runserver
-
-# django-test: docker-run
-# 	@echo "$(INFO)[INFO] Running Django tests..."
-# 	@echo "----------------------------------$(NC)"
-# 	$(PYTHON_PATH) -B manage.py test
 
 # DOCKER TASKS
 # ------------

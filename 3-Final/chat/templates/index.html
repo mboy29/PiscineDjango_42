@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}D09 - Chat Index{% endblock %}
+
+{% block content %}
+<h1>Available Chat Rooms</h1>
+<ul class="list-group">
+    {% for room in rooms %}
+        <li class="list-group-item">
+            <a href="{% url 'chat:room' room.name %}">{{ room.name }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h2 class="mt-4">Create or Enter a Room</h2>
+<div class="input-group mb-3">
+    <input id="room-name-input" type="text" class="form-control" placeholder="Enter room name">
+    <div class="input-group-append">
+        {% csrf_token %}
+        <button id="room-name-submit" class="btn btn-primary">Enter</button>
+    </div>
+</div>
+
+<script src="{% static 'js/chat/index.js' %}"></script>
+{% endblock %}

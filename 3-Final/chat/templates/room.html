@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}D09 - Chat Room {{ room_name }}{% endblock %}
+
+{% block content %}
+    <h1>Chat Room: {{ room_name }}</h1>
+
+    <textarea id="chat-log" class="form-control" rows="10" readonly></textarea><br>
+
+    <div class="input-group mb-3">
+        <input id="chat-message-input" type="text" class="form-control" placeholder="Type your message...">
+        <div class="input-group-append">
+            <button id="chat-message-submit" class="btn btn-primary">Send</button>
+        </div>
+    </div>
+
+    <script id="room-name" type="application/json">
+        "{{ room_name|escapejs }}"
+    </script>
+    <script src="{% static 'js/chat/room.js' %}"></script>
+{% endblock %}

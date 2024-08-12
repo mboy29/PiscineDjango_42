@@ -12,7 +12,16 @@ services:
         volumes:
             - ${DATABASE_VOLUME}:/var/lib/postgresql/data
         networks:
-            - ${DATABASE_NETWORK}
+            - ${NETWORK}
+    
+    d09_redis:
+        image: redis:7
+        env_file: .env
+        container_name: ${REDIS_CONTAINER}
+        ports:
+            - "${REDIS_HOST_PORT}:${REDIS_CONTAINER_PORT}"
+        networks:
+            - ${NETWORK}
 
 volumes:
     d09_volume:
