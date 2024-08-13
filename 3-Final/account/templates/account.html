@@ -1,31 +1,46 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block title %}Account{% endblock %}
 
 {% block content %}
-<div id="account-section">
-    <div id="login-form-container">
-        <h1>Login</h1>
-        <form id="login-form" method="post" action="{% url 'account:account' %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" class="form-control" required>
+<div class="container mt-4">
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
+        {% if request.user.is_authenticated %}
+            <div class="text-center">
+                <button id="logout-button" class="btn btn-danger btn-lg">Logout</button>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" required>
+        {% else %}
+        <div class="container mt-4">
+            <h1 class="text-center mb-4">Login</h1>
+            <div class="d-flex justify-content-center">
+                <div class="form-container mt-4" style="max-width: 500px; width: 100%;">
+                    <form id="login-form" method="post">
+                        {% csrf_token %}
+                        <div id="form-errors" class="text-danger mt-3 text-center"></div>
+                        <div class="form-group">
+                            {% for field in form %}
+                                <div class="form-group">
+                                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                    <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="{{ field.id_for_label }}" value="{{ field.value|default_if_none:'' }}" class="form-control" {% if field.field.required %}required{% endif %}>
+                                    {% if field.help_text %}
+                                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-light w-100">Login</button>
+                    </form>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            <div id="form-errors" class="text-danger"></div>
-        </form>
-    </div>
-    <div id="logged-in-section" style="display: none;">
-        <p id="user-info"></p>
-        <button id="logout-button" class="btn btn-danger">Logout</button>
+        {% endif %}
     </div>
 </div>
 
-<script src="{% static 'js/account/account.js' %}"></script>
+<script>
+    var logoutUrl = "{% url 'account:logout' %}";
+    var loginUrl = window.location.href;
+</script>
+
+<script src="{% static 'js/account.js' %}"></script>
 {% endblock %}
