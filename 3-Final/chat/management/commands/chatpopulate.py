@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
 
-from chat.models import *
+from chat.models.room import *
 
 class Command(BaseCommand):
         

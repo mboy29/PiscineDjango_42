@@ -1,8 +1,8 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from chat.models import *
+from chat.models.room import *
 
 # Create your views here.
 
@@ -37,5 +37,9 @@ def view_room(request, room_name):
         http.HttpResponse: The response object.
     """
 
-    room = ChatRoom.create(room_name)
+    try:
+        room = ChatRoom.fetch(room_name)
+    except ChatRoom.DoesNotExist:
+        messages.error(request, "The chat room does not exist.")
+        return redirect('chat:index')
     return render(request, "room.html", {"room_name": room.name})

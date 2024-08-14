@@ -151,3 +151,4 @@ ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
 AUTH_USER_MODEL = 'account.User'
 
 LOGIN_URL = '/account/' 
+LOGIN_REDIRECT_URL = '/chat/'

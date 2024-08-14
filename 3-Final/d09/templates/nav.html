@@ -1,47 +1,27 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">DO9</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
+    <div class="container-fluid d-flex justify-content-between align-items-center position-relative">
+        <a class="navbar-brand" href="#">DO9</a>
+        
+        {% if user.is_authenticated %}
+            <div class="mx-auto position-absolute" style="left: 50%; transform: translateX(-50%);">
+                <span class="navbar-text">Hello, {{ user.username }}</span>
+            </div>
+        {% endif %}
+        
+        <div class="ml-auto position-relative" style="z-index: 1;">
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <span class="navbar-text">Hello, {{ user.username }}</span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="navbar-logout">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'account:account' %}">
-                        <i class="fas fa-sign-in-alt"></i> Login
-                    </a>
-                </li>
+                <a class="nav-link text-muted" href="#" id="navbar-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
             {% endif %}
-        </ul>
+        </div>
     </div>
 </nav>
 
 <script>
-    $(document).ready(function() {
-        $('#navbar-logout').on('click', function(event) {
-            event.preventDefault();
-            $.ajax({
-                type: 'POST',
-                url: '{% url "account:logout" %}',
-                data: {
-                    'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
-                },
-                success: function(response) {
-                    if (response.status === 'success') {
-                        location.reload();
-                    }
-                }
-            });
-        });
-    });
+    var logoutUrl = "{% url 'account:logout' %}";
+    var loginUrl = window.location.href;
 </script>
+
+<script src="{% static 'js/account.js' %}"></script>

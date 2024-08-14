@@ -1,16 +1,11 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Account{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <div class="d-flex justify-content-center align-items-center min-vh-100">
-        {% if request.user.is_authenticated %}
-            <div class="text-center">
-                <button id="logout-button" class="btn btn-danger btn-lg">Logout</button>
-            </div>
-        {% else %}
+    {% if not request.user.is_authenticated %}
         <div class="container mt-4">
             <h1 class="text-center mb-4">Login</h1>
             <div class="d-flex justify-content-center">
@@ -33,8 +28,32 @@
                     </form>
                 </div>
             </div>
-        {% endif %}
-    </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h2 class="mt-4 text-center">Create or Enter a Room</h2>
+                    <div class="input-group mb-4">
+                        <input id="room-name-input" type="text" class="form-control" placeholder="Enter room name">
+                        <div class="input-group-append">
+                            {% csrf_token %}
+                            <button id="room-name-submit" class="btn btn-light">Enter</button>
+                        </div>
+                    </div>
+                    <h1 class="my-4 text-center">Available Chat Rooms</h1>
+                    <ul class="list-group">
+                        {% for room in rooms %}
+                            <li class="list-group-item text-center">
+                                <a href="{% url 'chat:room' room.name %}" class="text-muted">{{ room.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'js/chat/index.js' %}"></script>
+    {% endif %}
 </div>
 
 <script>

@@ -3,7 +3,7 @@ $(document).ready(function() {
         event.preventDefault();
         $.ajax({
             type: 'POST',
-            url: loginUrl, // Use the dynamic login URL
+            url: loginUrl,
             data: $(this).serialize(),
             success: function(response) {
                 if (response.status === 'success') {
@@ -40,7 +40,7 @@ $(document).ready(function() {
         event.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '{% url "account:logout" %}',
+            url: logoutUrl,
             data: {
                 'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
             },
