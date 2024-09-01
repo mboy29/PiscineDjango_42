@@ -147,7 +147,7 @@ class DatabaseManager:
             self.conn.commit()
         except errors.DuplicateTable:
             self.conn.rollback()
-            raise Exception("The table 'ex00_movies' already exists.")
+            pass
         except psycopg2.Error as e:
             self.conn.rollback()
             raise Exception(e)
