@@ -303,9 +303,9 @@ class Tip(models.Model):
         """
 
         try:
-            if user == self.author:
-                raise Exception('You cannot downvote your own tip.')
-            elif not user.is_tip_admin_downvoter:
+            if not user.is_tip_admin_downvoter and user != self.author:
+                if user in self.downvoters.all():
+                    raise Exception("You not longer have dowmvote previleges")
                 raise Exception('You are not authorized to downvote this tip.')
             elif user in self.upvoters.all():
                 self.upvote(user)
