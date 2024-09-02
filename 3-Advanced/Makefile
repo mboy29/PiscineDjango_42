@@ -13,8 +13,8 @@ INFO = \033[0;34m
 NC = \033[0m 
 
 # Define Docker and Django variables
-DOCKER_COMPOSE = docker compose
-DOCKER = docker
+DOCKER_COMPOSE = sudo docker compose
+DOCKER = sudo docker
 PYTHON_PATH = python3
 STATICFILES_DIR = staticfiles/
 DB_FILE = db.sqlite3

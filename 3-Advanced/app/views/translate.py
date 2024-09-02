@@ -14,7 +14,7 @@ class ViewTranslate(RedirectView):
     """
 
     def get_redirect_url(self, *args, **kwargs):
-        current_url = self.request.META.get('HTTP_REFERER').replace('http://localhost:8000', '')
+        current_url = self.request.META.get('HTTP_REFERER').replace('http://127.0.0.1:8000', '')
         match = re.match(r'^/([a-z]{2})/', current_url)
         if match:
             current_language = match.group(1)
@@ -26,4 +26,5 @@ class ViewTranslate(RedirectView):
             return current_url
         next_language = other_languages[0]
         new_url = re.sub(r'^/([a-z]{2})/', f'/{next_language}/', current_url, count=1)
+        activate(next_language)
         return new_url
