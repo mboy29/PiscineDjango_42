@@ -8,21 +8,28 @@ $(document).ready(function() {
                     $('#login-section').hide();
                     $('#logout-section').show();
                     $('#user-info').text('Logged as ' + response.username);
+                    $('#chat-section').show();
                 } else {
                     $('#login-section').show();
                     $('#logout-section').hide();
+                    $('#chat-section').hide();
                 }
             },
             error: function() {
-                // Handle errors if needed
+                $('#username').value = '';
+                $('#password').value = '';
                 $('#login-section').show();
                 $('#logout-section').hide();
+                $('#chat-section').hide();
             }
         });
     }
 
     $('#login-form').on('submit', function(event) {
         event.preventDefault();
+
+        $('#form-errors').empty();
+
         $.ajax({
             type: 'POST',
             url: loginUrl,
@@ -30,17 +37,18 @@ $(document).ready(function() {
             success: function(response) {
                 if (response.success) {
                     updatePage();
+                    $('#password').val('');
+                    $('#username').val('');
                 } else {
-                    $('#error-message').html('Invalid username or password.');
+                    $('#form-errors').html('Invalid username or password.');
                 }
             },
             error: function() {
-                $('#error-message').html('An error occurred while trying to log in.');
-            }
+                $('#form-errors').html('An error occurred while trying to log in.');
+            },
         });
     });
 
-    // Handle logout button click
     $('#logout-btn').on('click', function() {
         $.ajax({
             type: 'POST',
@@ -51,10 +59,10 @@ $(document).ready(function() {
                 }
             },
             error: function() {
+                $('#form-errors').html('An error occurred while trying to log out.');
             }
         });
     });
 
-    // Initial page load
     updatePage();
 });

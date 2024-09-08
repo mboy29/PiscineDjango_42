@@ -61,7 +61,7 @@ def logout_view(request):
     Returns:
         The response object.
     """
-    
+
     if request.method == 'POST':
         logout(request)
         return JsonResponse({'success': True})

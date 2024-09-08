@@ -179,7 +179,6 @@ class ChatConsumer(WebsocketConsumer):
 
         username = self.scope["user"].username
         leave_message = f"{username} has left the chat"
-        print("LEAVE MESSAGE", leave_message)
 
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name, {

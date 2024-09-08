@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function() {
     const roomNameElement = document.getElementById('room-name');
     if (!roomNameElement) {
         console.error('No room-name element found in the DOM');

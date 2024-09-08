@@ -1,23 +1,44 @@
-{% extends 'base.html' %}
 {% load static %}
-
-{% block title %}D09 - Chat Index{% endblock %}
-
-{% block content %}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h1 class="my-4 text-center">Available Chat Rooms</h1>
-            <ul class="list-group">
-                {% for room in rooms %}
-                    <li class="list-group-item text-center">
-                        <a href="{% url 'chat:room' room.name %}" class="text-muted">{{ room.name }}</a>
-                    </li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DO9 - Chat Index{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid d-flex justify-content-between align-items-center position-relative">
+            <a class="navbar-brand" href="{% url 'account:index' %}">DO9</a>
+        </div>  
+    </nav>
+    <div class="container mt-4">
+        {% if messages %}
+            <div class="alert alert-warning">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
                 {% endfor %}
-            </ul>
+            </div>
+        {% endif %}
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="my-4 text-center">Available Chat Rooms</h1>
+                <ul class="list-group">
+                    {% for room in rooms %}
+                        <li class="list-group-item text-center">
+                            <a href="{% url 'chat:room' room.name %}" class="text-muted">{{ room.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="{% static 'js/chat/index.js' %}"></script>
-{% endblock %}
+</body>
+</html>
