@@ -22,6 +22,7 @@ from account.views import *
 app_name = 'account'
 
 urlpatterns = [
-    path('', view_account, name='account'),
-    path('logout/', view_logout, name='logout'),
+    path('', view_index, name='index'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
 ]

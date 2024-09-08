@@ -1,4 +1,26 @@
 $(document).ready(function() {
+    function updatePage() {
+        $.ajax({
+            type: 'GET',
+            url: statusUrl,
+            success: function(response) {
+                if (response.success && response.user_is_authenticated) {
+                    $('#login-section').hide();
+                    $('#logout-section').show();
+                    $('#user-info').text('Logged as ' + response.username);
+                } else {
+                    $('#login-section').show();
+                    $('#logout-section').hide();
+                }
+            },
+            error: function() {
+                // Handle errors if needed
+                $('#login-section').show();
+                $('#logout-section').hide();
+            }
+        });
+    }
+
     $('#login-form').on('submit', function(event) {
         event.preventDefault();
         $.ajax({
@@ -6,49 +28,33 @@ $(document).ready(function() {
             url: loginUrl,
             data: $(this).serialize(),
             success: function(response) {
-                if (response.status === 'success') {
-                    location.reload();
+                if (response.success) {
+                    updatePage();
                 } else {
-                    $('#form-errors').html('');
-                    $.each(response.errors, function(field, errors) {
-                        $('#form-errors').append('<p>' + errors[0] + '</p>');
-                    });
+                    $('#error-message').html('Invalid username or password.');
                 }
+            },
+            error: function() {
+                $('#error-message').html('An error occurred while trying to log in.');
             }
         });
     });
 
-    $('#logout-button').on('click', function(event) {
-        event.preventDefault();
+    // Handle logout button click
+    $('#logout-btn').on('click', function() {
         $.ajax({
             type: 'POST',
             url: logoutUrl,
-            data: {
-                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
-            },
             success: function(response) {
-                if (response.status === 'success') {
-                    location.reload();
+                if (response.success) {
+                    updatePage();
                 }
+            },
+            error: function() {
             }
         });
     });
-});
 
-$(document).ready(function() {
-    $('#navbar-logout').on('click', function(event) {
-        event.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: logoutUrl,
-            data: {
-                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
-            },
-            success: function(response) {
-                if (response.status === 'success') {
-                    location.reload();
-                }
-            }
-        });
-    });
+    // Initial page load
+    updatePage();
 });

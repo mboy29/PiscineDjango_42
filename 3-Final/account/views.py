@@ -1,26 +1,41 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import JsonResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
-from django.contrib.auth import logout
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-
-from chat.models import *
-
-@csrf_exempt
-def view_account(request):
+def view_index(request):
 
     """
-    Renders the account page.
+    View for the account index page.
 
-    Args:
+    Params:
         request: The request object.
-    
+
     Returns:
-        http.HttpResponse: The response object.
+        The response object.
+    """
+
+    if request.is_ajax() and request.method == 'GET':
+        return JsonResponse({
+            'success': True,
+            'user_is_authenticated': request.user.is_authenticated,
+            'username': request.user.username
+        })
+    return render(request, 'account.html')
+
+@csrf_exempt
+def login_view(request):
+    
+    """
+    View for the login page.
+
+    Params:
+        request: The request object.
+
+    Returns:
+        The response object.
     """
 
     if request.method == 'POST':
@@ -28,28 +43,26 @@ def view_account(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return JsonResponse({'status': 'success'})
+            return JsonResponse({'success': True})
         else:
-            return JsonResponse({'status': 'error', 'errors': form.errors})
-    else:
-        form = AuthenticationForm()
-    return render(request, 'account.html', {'form': form, 'rooms': ChatRoom.fetchall()})
-
+            return JsonResponse({'success': False, 'error': form.errors.as_json()})
+    return JsonResponse({'success': False, 'error': 'Invalid request'})
 
 @csrf_exempt
-def view_logout(request):
+@login_required
+def logout_view(request):
 
     """
-    Logs out the user.
+    View for the logout page.
 
-    Args:
+    Params:
         request: The request object.
     
     Returns:
-        http.JsonResponse: The response object.
+        The response object.
     """
     
     if request.method == 'POST':
         logout(request)
-        return JsonResponse({'status': 'success'})
-    return JsonResponse({'status': 'error'})
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False, 'error': 'Invalid request'})
